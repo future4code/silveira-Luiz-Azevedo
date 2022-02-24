@@ -144,7 +144,7 @@ divideElementosPor10(arrayOriginal)
         arrayString(arrayOriginal);
 //         e) Escreva um programa que imprima no console o maior e o menor números contidos no array original
     function maiorEmenor (array){
-        let maiorNumero = 0
+        let maiorNumero = 0//bom declarar para usar de referência em relação ao índice da lista
         let menorNumero = 0  
         for(let indice = 0; indice < array.length; indice++){
             if(maiorNumero < array[indice]){
