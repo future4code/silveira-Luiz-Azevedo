@@ -340,6 +340,6 @@
           //enquanto que o índice que foi passado pelo método filter é o index do elemento da vez,
           // independentemente de o elemento ser repetido ou não. 
           //Comparando os dois index, eles não serão iguais, retornará false, o elemento não será capturado pelo filter.
-    })
+    // })
       
     // console.log(tiposDePokemons)

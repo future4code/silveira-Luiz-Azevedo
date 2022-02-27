@@ -110,8 +110,8 @@ while(confirm('Quer iniciar uma nova rodada?')){
     let valoresComputador = () => cartaComputador.reduce((acumulador, item) => {
         acumulador += item.valor
         return acumulador
-    }, 0)
-   
+    }, 0)// let estrutura = () => array.reduce((acumulador,item,idex,array) => {ação; no caso acumulador= variavel-valor}, valor inicial do acumulador)
+   //let estrutura = () => fazendo uma função
     let naipeUsuario = () => cartaUsuario.map((item) => item.texto); //estrutura mais limpa (apenas uma linha) pra receber o item e receber item.texto;
     
     let naipeComputador = () => cartaComputador.map((item) => item.texto);// chamando qual carta o jogador comprou; mapeou o array onde as cartas estao sendo inseridas e mostrou o texto de *cada* elemento da array;
