@@ -83,17 +83,28 @@ function retornaNPrimeirosPares(n) {
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
-}
+  if (ladoA === ladoB && ladoA === ladoC) {
+    return "Equilátero"
+  } else if (ladoA === ladoB && ladoA !== ladoC || ladoB === ladoC && ladoB !== ladoA || ladoC === ladoA && ladoC !== ladoB) {
+    return "Isósceles"
+  } else {
+    return "Escaleno"
+  }
+  }
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+  let novoArray = [];
+  let arrayEmOrdem = array.sort(function(a,b) {
+    return a - b
+  })
+novoArray.push(arrayEmOrdem[arrayEmOrdem.length-2], arrayEmOrdem[1]);
+return novoArray
 }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+  // return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores[0]}, ${filme.atores[1]}, ${filme.atores[2]}, ${filme.atores[3]}.`
 }
 
 // EXERCÍCIO 12
@@ -123,5 +134,5 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
+
 }
