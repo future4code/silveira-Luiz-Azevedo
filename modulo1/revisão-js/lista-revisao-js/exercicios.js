@@ -129,15 +129,37 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
+contas[0].saldoTotal = 500;
+contas[1].saldoTotal = 6260;
+contas[2].saldoTotal = -3340;
+contas[3].saldoTotal = -1900;
+contas[4].saldoTotal = 1300;
+contas[5].saldoTotal = 1400;
 
+contas[0].compras = [];
+contas[1].compras = [];
+contas[2].compras = [];
+contas[3].compras = [];
+contas[4].compras = [];
+contas[5].compras = [];
+return contas
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+//  return consultas.sort(function (a, b) {
+//   if (a.nome < b.nome){
+//     return -1
+//   } else {
+//     return true;
+//   } 
+//  })
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-
+  // function comparar (a,b) {
+  //   return a.dataDaConsulta < b.dataDaConsulta
+  //  }
+  //  return consultas.sort(comparar);
 }
