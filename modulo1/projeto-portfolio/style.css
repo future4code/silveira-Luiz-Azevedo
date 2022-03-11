@@ -1,0 +1,61 @@
+/* Estilizações gerais */
+header {
+    background-color: aliceblue;
+    display: inline-block;
+    margin-left: 42%;
+}
+
+body{
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+
+/* Estilização HOME*/
+
+
+#foto-inicial{
+    height: 260px;
+    width: 200px;
+    margin-left: 41%;
+    display: inline-block;
+}
+
+#div-foto{
+    border: 150px;
+    border-color: black;
+}
+
+#texto-descrição{
+    text-align: center;
+}
+
+#lista-habilidades{
+    margin-left: 40%;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Estilização PROJETOS*/
+#tabela-projetos{
+    display: block;
+    margin:auto;
+}
+#tabela-projetos ol{
+    margin-left: 42%;
+}
+
+/* Estilização PROJETOS*/
+#lista-experiencias{
+    margin-left: 40%;
+}
+#lista-experiencias ul{
+    margin-left: -20px;
+    margin-bottom: 15px;
+}
