@@ -335,8 +335,11 @@
     // })
       
     // const tiposDePokemons = mapearTipos.filter((item, index, array) => {
-    //       return array.indexOf(item) === index//indexOf() serve pra mostrar a posição do"item" na array;
-          //a função ta excluindo os itens que 
-    })
+    //       return array.indexOf(item) === index //em um array, um elemento repetido mantem o index do elemento que apareceu pela primeira vez;
+          //no array no original o index do elemento repetido é o índice da primeira aparição dele, 
+          //enquanto que o índice que foi passado pelo método filter é o index do elemento da vez,
+          // independentemente de o elemento ser repetido ou não. 
+          //Comparando os dois index, eles não serão iguais, retornará false, o elemento não será capturado pelo filter.
+    // })
       
     // console.log(tiposDePokemons)
