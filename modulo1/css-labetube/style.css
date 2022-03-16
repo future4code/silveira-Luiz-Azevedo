@@ -1,3 +1,4 @@
+/*Gerais*/
 *{
     margin: 0;
     padding: 0;
@@ -16,7 +17,25 @@ header img{
     margin-top: 5px;
 }
 
-main {
+body{
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 40px 1fr 40px;
+}
+footer{
+    grid-column: 1/-1;   
+    background-color: rgb(207, 4, 4);
+}
+
+footer p{
+    display: flex;
+    color: aliceblue;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/*Principal*/
+#main-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -40,26 +59,24 @@ main {
 .video-card{
     width: 100%;
 }
-body{
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: 40px 1fr 40px;
-}
-footer{
-    grid-column: 1/-1;   
-    background-color: rgb(207, 4, 4);
-}
 
-footer p{
-    display: flex;
-    color: aliceblue;
-    justify-content: center;
-    margin-top: 10px;
-}
-
+/*Secundários*/
 .tela-video{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
+    width: 100vw;
 }
+
+@media screen and (max-device-width : 480px) {/*display para celulares*/
+    #main-container{
+        grid-template-columns: 1fr;
+    }
+    .tela-video{
+        height: 100%;
+    }
+    .video{
+        width: 90%;
+    }
+} 
