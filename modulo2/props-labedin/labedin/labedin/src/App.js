@@ -9,6 +9,7 @@ import Labenu from './components/img/labenu.png';
 import Autonomo from './components/img/autonomo.jpg';
 import EJ from './components/img/EJ.png';
 import Ufrn from './components/img/ufrn.png';
+import Insta from "./components/img/insta.jpeg"
 
 
 function App() {
@@ -66,14 +67,22 @@ function App() {
       <div className="page-section-container">
         <h2>Minhas redes sociais</h2>
         <ImagemButton 
+          link="https://www.facebook.com/luiz.vinicius.33/"
           imagem="https://d2v9ipibika81v.cloudfront.net/uploads/sites/261/2017/01/facebook-logo-3.png" 
           texto="Facebook" 
         />        
 
         <ImagemButton 
+          link="https://twitter.com/luuizv"
           imagem="https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-1-1.png" 
           texto="Twitter" 
-        />        
+        />
+
+        <ImagemButton 
+          link="https://www.instagram.com/luuizv/"
+          imagem={Insta} 
+          texto="Instagram" 
+        />            
       </div>
     </div>
   );

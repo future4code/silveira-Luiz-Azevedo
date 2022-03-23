@@ -18,7 +18,9 @@ const ImgDiv = styled.img`
 function ImagemButton(props) {
     return (
         <DivContainer>
-            <ImgDiv src={ props.imagem }/>
+            <a href={props.link}>
+            <ImgDiv src={props.imagem}/>
+            </a>
             <p>{ props.texto }</p>
         </DivContainer>
     )
