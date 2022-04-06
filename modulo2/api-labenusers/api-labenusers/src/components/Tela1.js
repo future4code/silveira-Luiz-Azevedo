@@ -1,7 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
+const MainContainer = styled.div`
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+input{
+  margin: 10px;
+  padding: 5px;
+  border-radius: 3px;
+}
+button{
+  margin: 5px;
+}
+`
 export default class Tela1 extends React.Component {
   state = {
       inputName: "",
@@ -15,7 +28,7 @@ export default class Tela1 extends React.Component {
     this.setState({inputEmail:event.target.value})
 }
 createUser = () => { //CRIAR USUÁRIO
-    const axiosConfig = { //CHAVE DE ACESSO
+    const headers = { //CHAVE DE ACESSO
       headers: {
         Authorization: "luiz-vinicius-silveira"
       }
@@ -30,10 +43,10 @@ createUser = () => { //CRIAR USUÁRIO
       .post( //ESPECIFICAR O MÉTODO
         "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",//URL
         body,//CORPO DO SAVE
-        axiosConfig //CHAVE DE ACESSO
+        headers //CHAVE DE ACESSO
       )
       .then((response) => {//SE DER CERTO = ALERT AVISANDO QUE FOI CRIADO
-        alert(`Usuário ${this.state.inputName} criado com sucesso!`);
+        alert(`Usuário(a) ${this.state.inputName} criado com sucesso!`);
         this.setState({ inputName: "", inputEmail: "" });
         console.log(response)
       })
@@ -44,7 +57,8 @@ createUser = () => { //CRIAR USUÁRIO
   };
     render() {
     return (
-      <div>
+      <MainContainer>
+        <h1>Cadastro</h1>
           <input
           type={'text'}
           onChange={this.onChangeName}
@@ -54,14 +68,14 @@ createUser = () => { //CRIAR USUÁRIO
           <input
           type={'email'} 
           onChange={this.onChangeEmail}
-          placeholder={"Nome"}
+          placeholder={"Email"}
           value={this.state.inputEmail}/>
           <button
             onClick={this.createUser}
           >
             Cadastrar
           </button>
-      </div>
+      </MainContainer>
     )
   }
 }
