@@ -8,14 +8,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: whitesmoke;
+    background: #2F4F4F;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* background-color: aqua; */
   }
 `;
 const MainContainer = styled.div`
-border: 2px solid black;
-border-radius: 5px;
 display: flex;
 justify-content: center;
 flex-direction: column;
@@ -39,6 +37,9 @@ button:hover{
 input:active{
   background-color: darkgray;
   color: whitesmoke
+}
+h2{
+  text-align: center;
 }
 `
 
