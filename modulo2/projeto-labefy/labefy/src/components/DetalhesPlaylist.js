@@ -2,6 +2,15 @@ import axios from 'axios'
 import React from 'react'
 import { base_url } from '../constants/URLs';
 import styled from 'styled-components';
+const PStyled = styled.p`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 10px;
+  color: #dfe73b;
+  margin: 5px;
+`
+
 const DivDasListas = styled.div`
 display: flex;
 flex-direction: column ;
@@ -222,9 +231,9 @@ export default class DetalhesPlaylist extends React.Component {
           Authorization: 'azevedolv-silveira'
         }
       }
-      const response = await axios.post(url, body, headers)      
+      const response = await axios.post(url, body, headers)
       alert(`Boa correria! Música adicionada!`)
-      this.setState({inputNomeArtista:"", inputNomeMusica:"", inputUrl: ""})
+      this.setState({ inputNomeArtista: "", inputNomeMusica: "", inputUrl: "" })
       console.log(response)
       this.mostrarMusicas()
     } catch (err) {
@@ -273,9 +282,12 @@ export default class DetalhesPlaylist extends React.Component {
           <DivDasMusicas>
             <PstyledAnimation>{musica.name}</PstyledAnimation>
             <PstyledAnimation>{musica.artist}</PstyledAnimation>
-            <iframe width="560" height="315" src={musica.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>          
+            <iframe width="560" height="315" src={musica.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </DivDasMusicas>
           <FakeButton onClick={() => this.deletaMusica(musica.id)}>Excluir</FakeButton>
+          <PStyled>
+          *Para que o recurso de reprodução das músicas funcione, adicione a URL disponibilizada pelo YouTube através do botão "Compartilhar" > "Incorporar" > Copia e Cola apenas a propriedade de URL.
+          </PStyled>
         </DivDasListas>
       )
     })
@@ -302,23 +314,23 @@ export default class DetalhesPlaylist extends React.Component {
               <h2>Detalhes da Playlist</h2>
               {musicas}
               <DivEdit>
-              <input
-                placeholder={'Nome da música'}
-                value={this.state.inputNomeMusica}
-                onChange={this.onChangeNomeMusica}
-              />
-              <input
-                placeholder={'Nome do artista'}
-                value={this.state.inputNomeArtista}
-                onChange={this.onChangeNomeArtista}
-              />
-              <input
-                placeholder={'URL da música'}
-                value={this.state.inputUrl}
-                onChange={this.onChangeUrl}
-              />
-              <AddMusicButton onClick={this.addMusicas}>Adicionar música</AddMusicButton>
-              <CancelButton onClick={this.editPage}>Cancelar</CancelButton>
+                <input
+                  placeholder={'Nome da música'}
+                  value={this.state.inputNomeMusica}
+                  onChange={this.onChangeNomeMusica}
+                />
+                <input
+                  placeholder={'Nome do artista'}
+                  value={this.state.inputNomeArtista}
+                  onChange={this.onChangeNomeArtista}
+                />
+                <input
+                  placeholder={'URL da música'}
+                  value={this.state.inputUrl}
+                  onChange={this.onChangeUrl}
+                />
+                <AddMusicButton onClick={this.addMusicas}>Adicionar música</AddMusicButton>
+                <CancelButton onClick={this.editPage}>Cancelar</CancelButton>
               </DivEdit>
             </div>
           )

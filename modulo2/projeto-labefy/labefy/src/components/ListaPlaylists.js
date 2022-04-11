@@ -4,6 +4,8 @@ import axios from 'axios';
 import { base_url } from '../constants/URLs';
 import DetalhesPlaylist from './DetalhesPlaylist.js'
 
+
+
 const DivDasListas = styled.div`
 display: flex;
 flex-direction: column ;
@@ -72,44 +74,41 @@ const FakeButton = styled.span`
 }
 `
 export default class App extends React.Component {
-  state ={
-      listaDePlaylists:[],
-      tela: "lista",
-      playlistId: ""
+  state = {
+    listaDePlaylists: [],
+    tela: "lista",
+    playlistId: ""
   }
-  componentDidMount = () =>{
-      this.mostraPlaylists()
+  componentDidMount = () => {
+    this.mostraPlaylists()
   }
   mostraPlaylists = async () => {
-      try{
-          const url = `${base_url}/playlists`
-          const headers= {
-              headers: {
-                  Authorization: 'azevedolv-silveira'
-                }
-            }
-          const response = await axios.get(url, headers)
-        console.log(response.data.result.list)
-        this.setState({listaDePlaylists: response.data.result.list})
-      } catch (err){
-          console.log(err.reponse)
+    try {
+      const url = `${base_url}/playlists`
+      const headers = {
+        headers: {
+          Authorization: 'azevedolv-silveira'
+        }
       }
+      const response = await axios.get(url, headers)
+      console.log(response.data.result.list)
+      this.setState({ listaDePlaylists: response.data.result.list })
+    } catch (err) {
+      console.log(err.reponse)
+    }
   }
 
-  trocaTelaDetalhes = (playlistId) => { 
-    if(this.state.tela === "lista"){
-      this.setState({ tela: "detalhes", playlistId: playlistId})
-    }else{
-      this.setState({ tela: "lista", playlistId: ""})
+  trocaTelaDetalhes = (playlistId) => {
+    if (this.state.tela === "lista") {
+      this.setState({ tela: "detalhes", playlistId: playlistId })
+    } else {
+      this.setState({ tela: "lista", playlistId: "" })
     }
-  } 
+  }
 
-  // nomePlaylist = this.state.listaDePlaylists.filter((playlist) =>{
-  //   if(this.trocaTelaDetalhes(playlist.id)){  
-  //   return <h2 key={playlist.id}>{playlist.nome}</h2>}
-  // })
 
-  deletaPlaylist = playlistId =>{
+
+  deletaPlaylist = playlistId => {
     if (window.confirm("Tem certeza que deseja excluir a música da playlist?")) {//tipo um alert mas com ok ou cancelar
       const url = `${base_url}/playlists/${playlistId}`
       const headers = {
@@ -132,33 +131,56 @@ export default class App extends React.Component {
         });
     }
   }
-    render() {
-        const playlists = this.state.listaDePlaylists.map((playlist) =>{
-            return (
-            <DivDasPlaylists 
-            key={playlist.id}
-            >
-                <DivDasPlaylists>
-                    <p onClick={() => this.trocaTelaDetalhes(playlist.id)}>{playlist.name}</p>
-                <FakeButton onClick={() => this.deletaPlaylist(playlist.id)}>X</FakeButton>
-                </DivDasPlaylists>
-            </DivDasPlaylists>
-            )
-        })
-      return (        
-        <div>
-        {this.state.tela === "lista" ?
-        (
-        <DivDasListas>
-          <h2>Playlists Criadas</h2>
-          {this.state.listaDePlaylists.length === 0 && <div>Não há playlists salvas...</div>}
-          {playlists}
-        </DivDasListas>
-        )
-          : (<DetalhesPlaylist playlistId={this.state.playlistId} trocaTelaDetalhes={this.trocaTelaDetalhes} nomeDaPlaylist={this.state.listaDePlaylists.name}/>)
-          }
-        </div>
-  
+  render() {
+    const playlists = this.state.listaDePlaylists.map((playlist) => {
+      return (
+        <DivDasPlaylists
+          key={playlist.id}
+        >
+          <DivDasPlaylists>
+            <p onClick={() => this.trocaTelaDetalhes(playlist.id)}>{playlist.name}</p>
+            <FakeButton onClick={() => this.deletaPlaylist(playlist.id)}>X</FakeButton>
+          </DivDasPlaylists>
+        </DivDasPlaylists>
       )
-    }
+    })
+    // const getNomePlaylist = this.state.listaDePlaylists.map((playlist) => {
+    //   return (
+    //     <DivDasPlaylists
+    //       key={playlist.id}
+    //     >
+    //       <DivDasPlaylists>
+    //         <p>{playlist.name}</p>
+    //       </DivDasPlaylists>
+    //     </DivDasPlaylists>
+    //   )
+    // }).filter((playlist) =>{
+    //   if(playlist.id == this.state.playlistId){
+    //     return (
+    //       <DivDasPlaylists
+    //         key={playlist.id}
+    //       >
+    //         <DivDasPlaylists>
+    //           <p>{playlist}</p>
+    //         </DivDasPlaylists>
+    //       </DivDasPlaylists>
+    //     )
+    //   }
+    // })
+    return (
+      <div>
+        {this.state.tela === "lista" ?
+          (
+              <DivDasListas>
+                <h2>Playlists Criadas</h2>
+                {this.state.listaDePlaylists.length === 0 && <div>Não há playlists salvas...</div>}
+                {playlists}
+              </DivDasListas>
+          )
+          : (<DetalhesPlaylist playlistId={this.state.playlistId} trocaTelaDetalhes={this.trocaTelaDetalhes} />)
+        }
+      </div>
+
+    )
   }
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import axios from 'axios';
 
 const H2Styled = styled.h2`
 margin: 15px;
@@ -34,34 +33,7 @@ const FakeButton = styled.span`
 `
 
 export default class App extends React.Component {
-  state = {
-      inputPlaylist: ""
-  }
-  
-  onChangePlaylist = (event) =>{
-      this.setState({inputPlaylist: event.target.value})
-  }
-  criaPlaylist = async () =>{
-    try {  
-    const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
-      const headers = {
-          Authorization: "azevedolv-silveira"
-      };
-      const body = {
-          name: this.state.inputPlaylist
-        }
-      const response = await axios.post(url, body, {headers:{
-        Authorization: "azevedolv-silveira"
-    }})
-    alert(`Brabo! A playlist ${this.state.inputPlaylist} foi criada e pode ser tocada quando quiser!`)  
-    console.log(response)
-    this.setState({ inputPlaylist: ""});
-    } catch (err){
-        alert(`Ih alá! Deu erro... tente novamente.`) 
-        console.log(err.response)
-        this.setState({ inputPlaylist: ""});
-    }
-  }
+   
     render() {
   
       return (
@@ -72,10 +44,10 @@ export default class App extends React.Component {
               <input
               type={'text'}
                placeholder='Nome da Playlist'
-               value={this.state.inputPlaylist}
-               onChange={this.onChangePlaylist}
+               value={this.props.stateInputPlaylist}
+               onChange={this.props.onChangePlaylist}
                 />
-                <FakeButton onClick={this.criaPlaylist}>Criar</FakeButton>
+                <FakeButton onClick={this.props.criaPlaylist}>Criar</FakeButton>
           </DivInputButton>
         </div>
   

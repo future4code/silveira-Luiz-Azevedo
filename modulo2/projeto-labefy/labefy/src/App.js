@@ -29,6 +29,8 @@ const PStyled = styled.p`
   justify-content: center;
   text-align: center;
   font-size: 13px;
+  color: #dfe73b;
+  margin: 5px;
 `
 
 const FakeButton = styled.span`
@@ -78,9 +80,34 @@ input {
 
 export default class App extends React.Component {
   state = {
-    tela: "cadastro"
-  }
+    tela: "cadastro",
+    inputPlaylist: ""
+}
 
+onChangePlaylist = (event) =>{
+    this.setState({inputPlaylist: event.target.value})
+}
+  criaPlaylist = async () =>{
+    try {  
+    const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
+      const headers = {
+          Authorization: "azevedolv-silveira"
+      };
+      const body = {
+          name: this.state.inputPlaylist
+        }
+      const response = await axios.post(url, body, {headers:{
+        Authorization: "azevedolv-silveira"
+    }})
+    alert(`Brabo! A playlist ${this.state.inputPlaylist} foi criada e pode ser tocada quando quiser!`)  
+    console.log(response)
+    this.setState({ inputPlaylist: ""});
+    } catch (err){
+        alert(`Ih alá! Deu erro... tente novamente.`) 
+        console.log(err.response)
+        this.setState({ inputPlaylist: ""});
+    }
+  }
   onClickPlaylists = () => { //Se a tela for 1 vai pra tela 2; se a tela for 2 vai pra tela 1
     if (this.state.tela === "cadastro") {
       this.setState({ tela: "playlists"})
@@ -103,7 +130,7 @@ export default class App extends React.Component {
               {this.state.tela === "cadastro" ? (
               <MainContainer>
                 <FakeButton onClick={this.onClickPlaylists}>Playlists</FakeButton>
-              <CriaPlaylist />
+              <CriaPlaylist criaPlaylist={this.criaPlaylist} onChangePlaylist={this.onChangePlaylist} stateInputPlaylist={this.state.inputPlaylist}/>
               </MainContainer>
               ) : (
               <MainContainer>
