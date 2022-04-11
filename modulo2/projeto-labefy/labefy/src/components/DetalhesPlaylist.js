@@ -298,7 +298,7 @@ export default class DetalhesPlaylist extends React.Component {
 
           (
             <div>
-              {/* <h2>{this.props.nomeDaPlaylist}</h2> */}
+              <h2>{this.props.nomeDaPlaylist}</h2>
               <h2>Detalhes da Playlist</h2>
               {musicas}
               <DivEdit>

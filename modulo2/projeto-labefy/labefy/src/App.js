@@ -41,6 +41,7 @@ const FakeButton = styled.span`
   padding: 2px;
   background-color: #dfe73b;
   font-size: 12px;
+  text-align: center;
 :hover{
   cursor: pointer;
   background-color: #0c1c18;
@@ -77,21 +78,19 @@ input {
 
 export default class App extends React.Component {
   state = {
-    tela: 1
+    tela: "cadastro"
   }
 
-  onClickTela = () => { //Se a tela for 1 vai pra tela 2; se a tela for 2 vai pra tela 1
-    if (this.state.tela === 1) {
-      const novaTela = this.state.tela + 1
-      this.setState({ tela: novaTela })
-      // console.log(this.state.tela)
-    } else {
-      const novaTela = this.state.tela - 1
-      this.setState({ tela: novaTela })
-      // console.log(this.state.tela)
-    }
+  onClickPlaylists = () => { //Se a tela for 1 vai pra tela 2; se a tela for 2 vai pra tela 1
+    if (this.state.tela === "cadastro") {
+      this.setState({ tela: "playlists"})
   }
-
+  }
+  onClickHome = () => { //Se a tela for 1 vai pra tela 2; se a tela for 2 vai pra tela 1
+    if (this.state.tela === "playlists") {
+      this.setState({ tela: "cadastro"})
+  }
+  }
 
   render() {
 
@@ -101,8 +100,17 @@ export default class App extends React.Component {
         <StyledDiv>
           <main>
             <MainContainer>
-              <FakeButton onClick={this.onClickTela}>Mudar de Tela</FakeButton>
-              {this.state.tela === 1 ? <CriaPlaylist /> : <ListaPLaylists />}
+              {this.state.tela === "cadastro" ? (
+              <MainContainer>
+                <FakeButton onClick={this.onClickPlaylists}>Playlists</FakeButton>
+              <CriaPlaylist />
+              </MainContainer>
+              ) : (
+              <MainContainer>
+                <FakeButton onClick={this.onClickHome}>Início</FakeButton>
+                <ListaPLaylists />
+                </MainContainer>
+                )}
             </MainContainer>
           </main>
           <footer>

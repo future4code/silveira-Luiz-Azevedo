@@ -155,7 +155,7 @@ export default class App extends React.Component {
           {playlists}
         </DivDasListas>
         )
-          : (<DetalhesPlaylist playlistId={this.state.playlistId} trocaTelaDetalhes={this.trocaTelaDetalhes} nomeDaPlaylist={this.state.listaDePlaylists}/>)
+          : (<DetalhesPlaylist playlistId={this.state.playlistId} trocaTelaDetalhes={this.trocaTelaDetalhes} nomeDaPlaylist={this.state.listaDePlaylists.name}/>)
           }
         </div>
   
