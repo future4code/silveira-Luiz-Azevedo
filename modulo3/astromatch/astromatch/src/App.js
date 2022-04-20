@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Home from "./components/Home/Home";
+import Matches from "./components/Matches/Matches";
 
 function App() {
+  const [page, setPage] = useState("home")
+
+  const exposedPage = () => {
+    switch (page) {
+      case "home":
+        return <Home matchPage={matchPage} />
+      case "matches":
+        return <Matches homePage={homePage} />
+      default:
+        return <Home></Home>
+    }
+  }
+
+  const homePage = () =>{
+    setPage("home")
+  }
+  const matchPage = () =>{
+    setPage("matches")
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {exposedPage()}
     </div>
   );
 }
