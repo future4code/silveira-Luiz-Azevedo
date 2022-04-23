@@ -69,6 +69,9 @@ const DivButton = styled.div`
 display: flex;
 justify-content: space-around;
 margin: 15px;
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    margin-bottom: 250px;
+}
 `
 const Click = styled.span`
 cursor: pointer;
