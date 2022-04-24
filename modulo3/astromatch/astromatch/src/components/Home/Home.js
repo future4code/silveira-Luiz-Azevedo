@@ -135,12 +135,16 @@ export default function Home(props) {
 
     return (
         <MainContainer>
-            {profile.length === 0 ? (
+            {profile.bio == undefined ? (
                 <>
-            <MatchIcon>
+             <MatchIcon>
                 <PeopleAltTwoToneIcon onClick={props.matchPage} />
-            </MatchIcon> 
+            </MatchIcon>
             <Loader />
+            <DivButton>
+                <Click><FavoriteTwoToneIcon onClick={() => getMatch(true)} /></Click>
+                <Click><ClearIcon onClick={() => getMatch(false)} /></Click>
+            </DivButton>
             </>) :(
                 <>
             <MatchIcon>

@@ -61,7 +61,7 @@ const LoaderContent = styled.div`
     display: block;
     width: 26px;
     height: 26px;
-    background: #753192;
+    background: #d22e7f ;
   }
 `
 
