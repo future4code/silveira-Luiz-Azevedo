@@ -98,14 +98,15 @@ export default function Home(props) {
     const [profile, setProfile] = useState({})
 
     const getProfiles = async () => {
-       try{ const url = 'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luiz-vinicius-silveira/person'
-        const response = await axios.get(url)
-                setProfile(response.data.profile)
-                console.log(response.data.profile)
-            }
-            catch (err){
-                console.log(err.response)
-            }
+        try {
+            const url = 'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luiz-vinicius-silveira/person'
+            const response = await axios.get(url)
+            setProfile(response.data.profile)
+            console.log(response.data.profile)
+        }
+        catch (err) {
+            console.log(err.response)
+        }
     }
 
     useEffect(() => {
@@ -135,35 +136,70 @@ export default function Home(props) {
 
     return (
         <MainContainer>
-            {profile.bio == undefined ? (
-                <>
-             <MatchIcon>
-                <PeopleAltTwoToneIcon onClick={props.matchPage} />
-            </MatchIcon>
-            <Loader />
-            <DivButton>
-                <Click><FavoriteTwoToneIcon onClick={() => getMatch(true)} /></Click>
-                <Click><ClearIcon onClick={() => getMatch(false)} /></Click>
-            </DivButton>
-            </>) :(
-                <>
-            <MatchIcon>
-                <PeopleAltTwoToneIcon onClick={props.matchPage} />
-            </MatchIcon>
-            <FotoPerfil>
-                <img src={profile.photo} alt={profile.name} />
-            </FotoPerfil>
-            <ContainerInfo>
-                <div>
-                    <p>{`${profile.name}, ${profile.age}`}</p>
-                </div>
-                <p>{profile.bio}</p>
-            </ContainerInfo>
-            <DivButton>
-                <Click><FavoriteTwoToneIcon onClick={() => getMatch(true)} /></Click>
-                <Click><ClearIcon onClick={() => getMatch(false)} /></Click>
-            </DivButton>
-            </>)}
+            {
+                profile === null ?
+                    (
+                        <>
+                            <MatchIcon>
+                                <PeopleAltTwoToneIcon onClick={props.matchPage} />
+                            </MatchIcon>
+                            <FotoPerfil>
+                                <Loader />
+                            </FotoPerfil>
+                            <ContainerInfo>
+                                <p>Se ainda não encontrou o(a) crush perfeito (a) <br /> entre na página de matches e  os limpe para continuar a procurar.</p>
+                            </ContainerInfo>
+                            <DivButton>
+                                <Click><FavoriteTwoToneIcon onClick={() => getMatch(true)} /></Click>
+                                <Click><ClearIcon onClick={() => getMatch(false)} /></Click>
+                            </DivButton>
+                        </>
+                    ) : (
+                        <>
+                            {profile.photo == undefined ?
+                                (
+                                    <>
+                                        <MatchIcon>
+                                            <PeopleAltTwoToneIcon onClick={props.matchPage} />
+                                        </MatchIcon>
+                                        <Loader />
+                                        <ContainerInfo>
+                                            <p>Carregando...</p>
+                                        </ContainerInfo>
+                                        <DivButton>
+                                            <Click><FavoriteTwoToneIcon onClick={() => getMatch(true)} /></Click>
+                                            <Click><ClearIcon onClick={() => getMatch(false)} /></Click>
+                                        </DivButton>
+                                    </>
+                                )
+                                :
+                                (
+                                    <>
+                                        <MatchIcon>
+                                            <PeopleAltTwoToneIcon onClick={props.matchPage} />
+                                        </MatchIcon>
+                                        <FotoPerfil>
+                                            <img src={profile.photo} alt={profile.name} />
+                                        </FotoPerfil>
+                                        <ContainerInfo>
+                                            <div>
+                                                <p>{`${profile.name}, ${profile.age}`}</p>
+                                            </div>
+                                            <p>{profile.bio}</p>
+                                        </ContainerInfo>
+                                        <DivButton>
+                                            <Click><FavoriteTwoToneIcon onClick={() => getMatch(true)} /></Click>
+                                            <Click><ClearIcon onClick={() => getMatch(false)} /></Click>
+                                        </DivButton>
+
+                                    </>
+                                )
+
+                            }
+                        </>
+                    )
+            }
+
         </MainContainer>
     )
 }

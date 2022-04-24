@@ -21,7 +21,7 @@ function App() {
       case "matches":
         return <Matches homePage={homePage} />
       default:
-        return <Home></Home>
+        return <Matches  homePage={homePage}/>
     }
   }
 
