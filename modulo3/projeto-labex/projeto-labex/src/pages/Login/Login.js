@@ -1,34 +1,53 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { goToHome, goToBack, goToAdmPage } from '../../routes/coordinator';
 import { Body, GlobalStyle, MainContainer } from './styles';
 import logo from '../../imgs/FOGUETE.png'
 import axios from 'axios';
-export default function Login() {
-  const navigate = useNavigate()
-  const [email, setEmail] = useState()
-  const [senha,setSenha] = useState()
+import useForm from '../../hooks/useForm'
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Input from "@material-ui/core/Input";
 
-  const onChangeEmail = (e) =>{
-    setEmail(e.target.value)
-  }
-  const onChangeSenha = (e) =>{
-    setSenha(e.target.value)
-  }
-  const onSubmitLogin = () =>{
-    console.log(email, senha)
+export default function Login() {
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+  
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const navigate = useNavigate()
+  const {form, onChange, clearForm} = useForm({email:""})
+
+  const onSubmitLogin = (event) =>{
+    event.preventDefault()
     const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinicius-silveira/login";
     const body ={
-      email: email,
-      password: senha
+      email: form.email,
+      password: values.password
     }
     axios.post(url, body)
     .then((response) =>{
       navigate("/admPage")
       console.log(response.data)
-      window.localStorage.setItem("token", response.data.token)
+      window.localStorage.setItem("token", response.data.token)//token está setado no localstoragem depois faz getItem para recuperar
+      clearForm()
     })
     .catch((error) =>{
+      alert("Usuário(a) ou senha incorretos!")
       console.log(error)
     })
   }
@@ -40,19 +59,38 @@ export default function Login() {
       </header>
       <main>
         <MainContainer>
-          <input 
-          value={email}
+          <form onSubmit={onSubmitLogin}>
+          <input
+          name='email' 
+          value={form.email}
           placeholder="E-mail"
-          onChange={onChangeEmail}
+          onChange={onChange}
+          required
+          type={'email'}
           />
-          <input 
-          value={senha}
+          <Input 
+          name='password'
+          value={values.password}
+          type={values.showPassword ? "text" : "password"}
           placeholder="Senha"
-          onChange={onChangeSenha}
+          onChange={handlePasswordChange("password")}
+          required
+          pattern={"^.{3,}"}
+          title={"Sua senha deve ter no mínimo 3 caracteres"}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
           />
+          <button type='submit'>Entrar</button>
+          </form>
           <button onClick={() => goToBack(navigate)}>Voltar</button>
-          <button type='submit' onClick={onSubmitLogin}>Entrar</button>
-
         </MainContainer>
       </main>
     </Body>

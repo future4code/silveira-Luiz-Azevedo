@@ -13,3 +13,9 @@
  export  const goToSubscription = (navigate) =>{
     navigate("/subscription")
   }
+  export  const goToTripDetails = (navigate) =>{
+    navigate("/tripDetails")
+  }
+  export  const goToCreateTrip = (navigate) =>{
+    navigate("/createTrip")
+  }

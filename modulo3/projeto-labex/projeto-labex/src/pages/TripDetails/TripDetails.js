@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function TripDetails() {
+export default function TripDetails(props) {
   return (
-    <div>TripDetails</div>
+    <div>
+    <p>{props.trip.name}</p>
+    </div>
   )
 }

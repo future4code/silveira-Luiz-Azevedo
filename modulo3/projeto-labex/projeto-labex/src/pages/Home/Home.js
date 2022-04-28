@@ -18,7 +18,6 @@ const getAllTrips = () =>{
   axios.get(url)
   .then((response) =>{
     setTriplist(response.data.trips)
-    console.log(tripList)
   })
   .catch((error) =>{
     console.log(error)
