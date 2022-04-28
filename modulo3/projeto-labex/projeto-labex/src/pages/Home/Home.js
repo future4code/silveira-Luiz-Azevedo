@@ -1,62 +1,72 @@
-// import axios from 'axios'
-// import React, { useEffect, useState } from 'react'
-import React from 'react'
-// import CardTrips from '../../components/CardTrips/CardTrips'
-import { GlobalStyle, Body, TripConatainer, MainContainer, SubsButtonContainer, HeaderButtonDiv } from './styled'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import CardTrips from '../../components/CardTrips/CardTrips'
+import { GlobalStyle, Body, TripContainer, MainContainer, SubsButtonContainer, HeaderButtonDiv } from './styled'
+import { useNavigate } from "react-router-dom";
+import { goToLogin, goToSubscription } from '../../routes/coordinator';
+import logo from '../../imgs/FOGUETE.png'
 
-export default function Home(props) {
-  // const [triplist, setTriplist] = useState()
-
-
-// const getAllTrips = () =>{
-//   const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinicius-silveira/trips"
-//   axios.get(url)
-//   .then((response) =>{
-//     setTriplist(response.data.trips)
-//     console.log(triplist)
-//   })
-//   .catch((error) =>{
-//     console.log(error.response)
-//   })
-// }
-
-// useEffect(() =>{
-//   getAllTrips()
-// }, [])
+export default function Home() {
+  const navigate = useNavigate()
 
 
+  const [tripList, setTriplist] = useState([])
 
+  
+const getAllTrips = () =>{
+  const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinicius-silveira/trips"
+  axios.get(url)
+  .then((response) =>{
+    setTriplist(response.data.trips)
+    console.log(tripList)
+  })
+  .catch((error) =>{
+    console.log(error)
+  })
+}
+useEffect(() =>{
+  getAllTrips()
+}, [])
 
-
-
-  // const triplistMap = triplist.map((trip) =>{
-  //   return (
-  //     <TripConatainer key={trip.id}>
-  //       <CardTrips />
-  //     </TripConatainer>
-  //   )
-  // })
+  const triplistMap = tripList.map((trip) =>{
+    return (
+      <TripContainer key={trip.id}>
+        <CardTrips trip={trip} />
+      </TripContainer>
+    )
+  })
   return (
     <Body>
       <GlobalStyle />
       <header>
         <HeaderButtonDiv>
-        <p>Logo</p>
+        <img src={logo} alt='logo'/>       
         </HeaderButtonDiv>
         <HeaderButtonDiv>
-        <button onClick={props.loginPage}>Login</button>
+        <button onClick={()=>goToSubscription(navigate)}>Quero viajar!</button>
+        <button onClick={()=>goToLogin(navigate)}>Login</button>
         </HeaderButtonDiv>
       </header>
       <main>
-        <MainContainer>
-        <TripConatainer>
-        {/* {triplistMap} */}
-        CardTrips
-        </TripConatainer>
+        {tripList.length > 0 ? (<MainContainer>
+        <TripContainer>
+          <h1>Lista de Viagens</h1>
+        {triplistMap}
+        </TripContainer>
         <SubsButtonContainer>
-        <button onClick={props.subsPage}>Quero viajar!</button>
+        
         </SubsButtonContainer>
-        </MainContainer>
+        </MainContainer>) 
+        : 
+        (<MainContainer>
+        <TripContainer>
+          <h1>Lista de Viagens</h1>
+        <p>Carregando...</p>
+        </TripContainer>
+        <SubsButtonContainer>
+        </SubsButtonContainer>
+        </MainContainer>)}
+        
       </main>
     </Body>
   )
