@@ -16,6 +16,7 @@ const deleteTrip = (id) =>{
     }
     axios.delete(url, headers)
     .then((response) =>{
+        alert("Viagem excluída com sucesso!")
         console.log(response)
         props.getAllTrips()
     })

@@ -14,6 +14,7 @@ flex-direction: column;
 background-image: url(${background});
 background-size: cover;
 background-repeat: no-repeat;
+background-position: center;
 header{
   height: 80px;
   display: flex;

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import background from '../../imgs/background.gif'
+import logo from '../../imgs/FOGUETE.png'
 export const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
@@ -13,7 +14,8 @@ display: flex;
 flex-direction: column;
 /* background-image: url(${background});
 background-size: cover;
-background-repeat: no-repeat; */
+background-repeat: no-repeat;
+background-position: center; */
 header{
   height: 80px;
   display: flex;
@@ -88,7 +90,7 @@ flex-direction: column;
 align-items: center;
 scroll-behavior: smooth;
 
-h1{
+h2{
   color: rgb(60,179,113);
 }
 `
@@ -103,6 +105,15 @@ width: 30rem;
 border-radius: 5px;
 margin-top: 5px;
 margin-bottom: 5px;
+p{
+  margin:5px;
+}
+img{
+        object-fit: fill;
+        width: 15rem;
+        height: 15rem;
+        opacity: 0.5;
+      }
 `
 
 export const SubsButtonContainer = styled.div`
@@ -111,6 +122,12 @@ display: flex;
 flex-direction: column;
 align-items: center;
 height: 100vh;
+img{
+        object-fit: fill;
+        width: 5rem;
+        height: 5rem;
+        opacity: 0.5;
+      }
 button{
   height: 30px;
       background-color: rgb(60,179,113);
@@ -131,7 +148,7 @@ export const CandidatosPendentesContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-background-color: rgb(60,179,113, 0.2);
+justify-content: center;
 min-height: 15rem;
 width: 20rem;
 border-radius: 5px;

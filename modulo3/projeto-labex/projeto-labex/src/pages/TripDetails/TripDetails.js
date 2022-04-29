@@ -4,14 +4,16 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {goToBack, goToHome} from '..//../routes/coordinator'
 import { GlobalStyle, Body, TripContainer, MainContainer, SubsButtonContainer, HeaderButtonDiv, BackContainer, CandidatosPendentesContainer, CandidatosAprovadosContainer, DescricaoContainer } from './styles'
 import logo from '../../imgs/FOGUETE.png'
-// import CardCandidates from '../../components/CardCandidates/CardCandidates';
+import CardCandidates from '../../components/CardCandidates/CardCandidates';
+import ApprovedCandidates from '../../components/ApprovedCandidates/ApprovedCandidates';
 
 
 export default function TripDetails() {
   const pathParams = useParams();
   const navigate = useNavigate();
   const [tripDetails, setTripDetails] = useState({});
-  const [candidates, setCandidates]= useState()
+  const [candidates, setCandidates]= useState();
+  const [approvedCandidates, setApprovedCandidates] = useState();
 
 const getTripDetails = () =>{
   const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinicius-silveira/trip/${pathParams.id}`;
@@ -23,28 +25,60 @@ const getTripDetails = () =>{
   axios.get(url, headers)
   .then((response) =>{
     setTripDetails(response.data.trip)
+    setCandidates(response.data.trip.candidates)
+    setApprovedCandidates(response.data.trip.approved)
   })
   .catch((error) =>{
-    console.log(error)
+    console.log(error.response)
   })
 }
 
 
-// const candidateList = () =>{
-//   setCandidates(tripDetails.candidates)
-// };
+const decideCandidate = (candidateID, decision) => {
+  const body = {
+      approve: decision
+  }
+  const headers = {
+    headers:{
+        'Content-Type': 'application/json',
+        'auth': window.localStorage.getItem('token')
+    }
+}
+const url =`https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinicius-silveira/trips/${pathParams.id}/candidates/${candidateID}/decide`
+  axios.put(url, body, headers)
+  .then(() => {
+      alert("Decisão registrada com sucesso!")
+      getTripDetails()
+  })
+  .catch((err) => console.log(err.response))
+}
+ console.log(tripDetails)
 
-// const listaMapeada = candidates.map((candidate) =>{
-//   return (
-//     <DescricaoContainer key={candidate.id}>
-//       <CardCandidates candidate={candidate} id={candidate.id} getTripDetails={getTripDetails}/>
-//     </DescricaoContainer>
-//   )
-// })
+const candidatesList = candidates && candidates.map((candidate) =>{
+  return (
+    <DescricaoContainer key={candidate.id}>
+      <CardCandidates candidate={candidate} id={candidate.id} decideCandidate={decideCandidate}/>
+    </DescricaoContainer>
+  )
+})
+
+const approvedList = approvedCandidates && approvedCandidates.map((candidate) =>{
+  return(
+    <DescricaoContainer key={candidate.id}>
+      <ApprovedCandidates candidate={candidate} id={candidate.id} />
+    </DescricaoContainer>
+  )
+})
 useEffect(()=>{
   getTripDetails();
-  // candidateList();
 }, [])
+
+// toISOString().slice(0, 10) - Tranforma a data no formato: yyyy-mm-dd
+//  new Date()- Pega a data atual
+const data = new Date(tripDetails.date)
+const dataFormatada= data.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
+
+
   return (
     <Body>
       <GlobalStyle />
@@ -63,23 +97,46 @@ useEffect(()=>{
   </BackContainer>
         <TripContainer>
         
+        <CandidatosPendentesContainer>
+          {candidates && candidates.lenght <0 ?(
+            <>
+            <h2>Candidatos Pendentes</h2>
+            {candidatesList}
+             </> 
+            
+          ):
+          ( 
+            <DescricaoContainer>
+            <h2>Não há candidatos Pendentes</h2>
+            <img src={logo} alt='logo'/>  
+            </DescricaoContainer>
+            )}
+        </CandidatosPendentesContainer>
         <DescricaoContainer>
-        <h2>Candidatos Pendentes</h2>
-        {/* {listaMapeada} */}
+        {candidates && approvedCandidates.lenght <0 ?
+        (
+            <>
+            <h2>Candidatos Aprovados</h2>
+          {approvedList}
+            </>
+          ):(
+            <>
+          <h2>Não há candidatos Aprovados</h2>
+            <img src={logo} alt='logo'/>  
+          </>
+          )}
         </DescricaoContainer>
-        <CandidatosAprovadosContainer>
-          <h2>Candidatos Aprovados</h2>
-        </CandidatosAprovadosContainer>
         </TripContainer>
         <SubsButtonContainer>
-        <CandidatosPendentesContainer>
+        <DescricaoContainer>
         <h2>{tripDetails.name}</h2>
-        <p><b>Nome:</b> {tripDetails.name}</p>
-          <p><b>Descrição:</b> {tripDetails.description}</p>
+        <p><b>Viagem:</b> {tripDetails.name}</p>
+          <p>{tripDetails.description}</p>
           <p><b>Planeta:</b> {tripDetails.planet}</p>
           <p><b>Duração:</b> {tripDetails.durationInDays} dias</p>
-          <p><b>Data:</b> {tripDetails.date}</p>
-        </CandidatosPendentesContainer>
+          <p><b>Data:</b> {dataFormatada}</p>
+          <img src={logo} alt='logo'/> 
+        </DescricaoContainer>
         
         </SubsButtonContainer>
         </MainContainer>

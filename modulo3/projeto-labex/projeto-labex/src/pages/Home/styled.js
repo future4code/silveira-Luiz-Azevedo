@@ -14,6 +14,7 @@ flex-direction: column;
 background-image: url(${background});
 background-size: cover;
 background-repeat: no-repeat;
+background-position: center;
 header{
   height: 80px;
   display: flex;
@@ -29,6 +30,10 @@ header{
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      :hover{
+        background-color: rgb(60,179,113, 0.2);
+        color: white;
+      }
       }
       img{
         object-fit: fill;
