@@ -13,8 +13,8 @@
  export  const goToSubscription = (navigate) =>{
     navigate("/subscription")
   }
-  export  const goToTripDetails = (navigate) =>{
-    navigate("/tripDetails")
+  export  const goToTripDetails = (navigate, id) =>{
+    navigate(`/tripDetails/${id}`)
   }
   export  const goToCreateTrip = (navigate) =>{
     navigate("/createTrip")

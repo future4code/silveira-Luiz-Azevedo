@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { GlobalStyle, Body, TripContainer, MainContainer, SubsButtonContainer, HeaderButtonDiv, BackContainer } from './styles'
 import { useNavigate } from "react-router-dom";
-import { goToHome, goToBack, goToCreateTrip, goToTripDetails } from '../../routes/coordinator';
+import { goToHome, goToBack, goToCreateTrip, goToTripDetails, goToLogin } from '../../routes/coordinator';
 import logo from '../../imgs/FOGUETE.png'
 import CardTripAdmin from '../../components/CardTripAdmin/CardTripAdmin';
 
@@ -26,11 +26,14 @@ const getAllTrips = () =>{
 useEffect(() =>{
   getAllTrips()
 }, [])
-
+const logout = () => {
+  localStorage.removeItem("token")
+  goToLogin(navigate)
+}
   const triplistMap = tripList.map((trip) =>{
     return (
       <TripContainer key={trip.id}>
-       <CardTripAdmin trip={trip} id={trip.id}/>
+       <CardTripAdmin trip={trip} id={trip.id} getAllTrips={getAllTrips}/>
       </TripContainer>
     )
   })
@@ -43,7 +46,7 @@ useEffect(() =>{
         <img onClick={() => goToHome(navigate)}src={logo} alt='logo'/>       
         </HeaderButtonDiv>
         <HeaderButtonDiv>
-        <button>Logout</button>
+        <button onClick={logout}>Logout</button>
         </HeaderButtonDiv>
       </header>
       <main>
@@ -56,7 +59,7 @@ useEffect(() =>{
           {triplistMap}
         </TripContainer>
         <SubsButtonContainer>
-        <button>Criar Viagem</button>
+        <button onClick={()=>goToCreateTrip(navigate)}>Criar Viagem</button>
         </SubsButtonContainer>
         </MainContainer>
         

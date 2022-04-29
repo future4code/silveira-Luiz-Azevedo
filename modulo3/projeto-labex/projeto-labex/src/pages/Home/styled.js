@@ -18,7 +18,7 @@ header{
   height: 80px;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(46,139,87, 0.01);
+  background-color: rgb(46,139,87, 0.4);
   button{
       height: 30px;
       background-color: rgb(60,179,113);
@@ -52,6 +52,7 @@ button{
 export const MainContainer = styled.div`
 display: grid;
 grid-template-columns: 0.5fr 1fr 0.5fr;
+background-color: rgb(46,139,87, 0.1);
 `
 export const TripContainer = styled.div`
 grid-column: 2;

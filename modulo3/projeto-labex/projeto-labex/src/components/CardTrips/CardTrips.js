@@ -2,14 +2,16 @@ import React from 'react'
 import {CardTripContainer} from './styles'
 
 export default function CardTrips(props) {
+
+  // const formataData = new Date(props.trip.date).toISOString().slice(0, 10);
+
   return (
     <CardTripContainer>
-      <p>{props.trip.name}</p>
-      <p>Planeta: {props.trip.planet}</p>
+      <p><b>{props.trip.name}</b></p>
+      <p><b>Planeta:</b> {props.trip.planet}</p>
       <p>{props.trip.description}</p>
-      <p>Data: {props.trip.date}</p>
-      <p>Duração: {props.trip.durationInDays}</p>
-
+      <p><b>Data:</b> {props.trip.date}</p>
+      <p><b>Duração:</b> {props.trip.durationInDays}</p>
     </CardTripContainer>
   )
 }

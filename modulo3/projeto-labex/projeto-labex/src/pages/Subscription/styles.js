@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import background from '../../imgs/background.gif'
+import giphy from '../../imgs/giphy.gif'
 export const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
@@ -44,6 +45,9 @@ header{
 main{
   flex-grow: 1;
 }
+body{
+  overflow: hidden;
+}
 `
 
 export const HeaderButtonDiv = styled.div`
@@ -57,7 +61,7 @@ button{
 export const MainContainer = styled.div`
 display: grid;
 grid-template-columns: 0.5fr 1fr 0.5fr;
-background-color: rgb(46,139,87, 0.2);
+height: 100vh;
 `
 export const BackContainer = styled.div`
 grid-column: 1;
@@ -86,20 +90,31 @@ grid-column: 2;
 display: flex;
 flex-direction: column;
 align-items: center;
-scroll-behavior: smooth;
-
-h1{
-  color: rgb(60,179,113);
+background-color: rgb(60,179,113, 0.2);
+height: 20rem;
+width: 40rem;
+border-radius: 5px;
+margin-top: 5px;
+input{
+    margin: 5px;
+    min-width: 19.8rem;
 }
-`
-export const SubsButtonContainer = styled.div`
-grid-column: 3;
-display: flex;
-flex-direction: column;
-align-items: center;
-height: 100vh;
+select{
+    margin: 5px;
+    min-width: 20rem;
+}
+h1{
+    color: rgb(60,179,113)
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:5px
+}
 button{
-  height: 30px;
+    height: 30px;
       background-color: rgb(60,179,113);
       border-radius: 5px;
       padding: 1rem;
@@ -108,12 +123,22 @@ button{
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      margin: 5px;
       :hover{
         background-color: rgb(60,179,113, 0.2);
         color: white;
       }
 }
+`
+export const GifContainer = styled.div`
+grid-column: 3;
+display: flex;
+align-items: center;
+justify-content: flex-end;
+max-width: 100%;
+height: 100vh;
+background-image: url(${giphy});
+background-size: cover;
+background-repeat: no-repeat;
 `
 export const CandidatosPendentesContainer = styled.div`
 display: flex;

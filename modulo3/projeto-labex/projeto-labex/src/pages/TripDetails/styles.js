@@ -92,6 +92,19 @@ h1{
   color: rgb(60,179,113);
 }
 `
+export const DescricaoContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: rgb(60,179,113, 0.2);
+min-height: 15rem;
+width: 30rem;
+border-radius: 5px;
+margin-top: 5px;
+margin-bottom: 5px;
+`
+
 export const SubsButtonContainer = styled.div`
 grid-column: 3;
 display: flex;
@@ -108,7 +121,6 @@ button{
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      margin: 5px;
       :hover{
         background-color: rgb(60,179,113, 0.2);
         color: white;

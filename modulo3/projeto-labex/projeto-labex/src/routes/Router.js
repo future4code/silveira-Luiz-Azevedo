@@ -16,7 +16,7 @@ export const Router = () => {
                     <Route path="subscription" element={<Subscription />} />
                     <Route path="admPage" element={<AdminHomePage />} />
                     <Route path="createTrip" element={<CreateTrip />} />
-                    <Route path="tripDetails" element={<TripDetails />} />
+                    <Route path="tripDetails/:id" element={<TripDetails />} />
                 </Routes>
             </BrowserRouter></div>
     )

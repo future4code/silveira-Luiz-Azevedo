@@ -4,7 +4,10 @@ import useForm from '../../hooks/useForm'
 import useRequestData from '../../hooks/useRequestData'
 import { paises } from '../../constants/países'
 import axios from 'axios'
-import { goToBack } from '../../routes/coordinator';
+import { goToBack, goToHome, goToLogin } from '../../routes/coordinator';
+import { GlobalStyle, Body, TripContainer, MainContainer, GifContainer, HeaderButtonDiv } from './styles'
+import logo from '../../imgs/FOGUETE.png'
+
 
 export default function Subscription() {
 const navigate = useNavigate()
@@ -34,7 +37,7 @@ const fazerCadastro = (event)  =>{
     axios
     .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinicius-silveira/trips/${form.tripId}/apply`, body)
     .then((response) => {
-        console.log("Formulário enviado!", response);
+        alert("Formulário enviado!");
         clearForm()
     })
     .catch((err) => {
@@ -45,12 +48,27 @@ const fazerCadastro = (event)  =>{
 }
 
   return (
-    <div>
-      <form onSubmit={fazerCadastro}>
+    <Body>
+        <GlobalStyle />
+        <header>
+        <HeaderButtonDiv>
+        <img onClick={() => goToHome(navigate)}src={logo} alt='logo'/>       
+        </HeaderButtonDiv>
+        <HeaderButtonDiv>
+        <button onClick={()=> goToLogin(navigate)}>Login</button>
+        </HeaderButtonDiv>
+        </header>
+        <main>
+            <MainContainer>
+            <TripContainer>
+                <h1>Cadastre-se:</h1>
+            <form onSubmit={fazerCadastro}>
+                <div>
                 <select name={"tripId"} defaultValue="" onChange={onChange}>
                     <option value="" disabled>Escolha uma Viagem</option>
                     {tripsOptions}
                 </select>
+                </div>
                 <input
                     placeholder={"Nome"}
                     name={"name"}
@@ -60,6 +78,7 @@ const fazerCadastro = (event)  =>{
                     title={"O nome deve ter no mínimo 3 caracteres"}
                     required
                 />
+                <div>
                 <input
                     placeholder={"Idade"}
                     type={"number"}
@@ -68,16 +87,20 @@ const fazerCadastro = (event)  =>{
                     onChange={onChange}
                     required
                     min={18}
+
                 />
+                </div>
+                <div>
                 <input
                     placeholder={"Texto de Candidatura"}
                     name={"applicationText"}
                     value={form.applicationText}
                     onChange={onChange}
                     required
-                    pattern={"^.{30,}$"}
+                    pattern={"^.{10,}$"}
                     title={"O texto deve ter no mínimo 30 caracteres"}
                 />
+                </div>
                 <input
                     placeholder={"Profissão"}
                     name={"profession"}
@@ -87,6 +110,7 @@ const fazerCadastro = (event)  =>{
                     pattern={"^.{10,}$"}
                     title={"A profissão deve ter no mínimo 10 caracteres"}
                 />
+                <div>
                 <select
                     placeholder={"País"}
                     name={"country"}
@@ -97,11 +121,18 @@ const fazerCadastro = (event)  =>{
                     <option value={""} disabled>Escolha um País</option>
                     {countriesMap}
                 </select>
+                </div>
                 <div>
                     <button type={"submit"}>Enviar</button>
                 </div>
             </form>
             <button onClick={() => goToBack(navigate)}>Voltar</button>
-    </div>
+            </TripContainer>
+            <GifContainer>
+                            
+            </GifContainer>
+            </MainContainer>
+        </main>
+    </Body>
   )
 }
