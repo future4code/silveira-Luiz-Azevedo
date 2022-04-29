@@ -7,6 +7,7 @@ import axios from 'axios'
 import { goToBack, goToHome, goToLogin } from '../../routes/coordinator';
 import { GlobalStyle, Body, TripContainer, MainContainer, GifContainer, HeaderButtonDiv } from './styles'
 import logo from '../../imgs/FOGUETE.png'
+import { logout } from '../../hooks/logout'
 
 
 export default function Subscription() {
@@ -46,7 +47,7 @@ const fazerCadastro = (event)  =>{
     })
     
 }
-
+const token = localStorage.getItem('token');
   return (
     <Body>
         <GlobalStyle />
@@ -55,7 +56,7 @@ const fazerCadastro = (event)  =>{
         <img onClick={() => goToHome(navigate)}src={logo} alt='logo'/>       
         </HeaderButtonDiv>
         <HeaderButtonDiv>
-        <button onClick={()=> goToLogin(navigate)}>Login</button>
+        {token ? <button onClick={logout}>Logout</button> : <button onClick={() => goToLogin(navigate)}>Login</button>}
         </HeaderButtonDiv>
         </header>
         <main>
@@ -87,6 +88,7 @@ const fazerCadastro = (event)  =>{
                     onChange={onChange}
                     required
                     min={18}
+                    tittle={'A idade mínima é de 18 anos para viagens interplanetárias'}
 
                 />
                 </div>
@@ -98,7 +100,7 @@ const fazerCadastro = (event)  =>{
                     onChange={onChange}
                     required
                     pattern={"^.{10,}$"}
-                    title={"O texto deve ter no mínimo 30 caracteres"}
+                    title={"O texto deve ter no mínimo 10 caracteres"}
                 />
                 </div>
                 <input
@@ -107,8 +109,8 @@ const fazerCadastro = (event)  =>{
                     value={form.profession}
                     onChange={onChange}
                     required
-                    pattern={"^.{10,}$"}
-                    title={"A profissão deve ter no mínimo 10 caracteres"}
+                    pattern={"^.{5,}$"}
+                    title={"A profissão deve ter no mínimo 5 caracteres"}
                 />
                 <div>
                 <select

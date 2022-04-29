@@ -2,7 +2,9 @@ import axios from 'axios';
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { goToTripDetails } from '../../routes/coordinator';
-import { CardTripContainer } from './styles';
+import { CardTripContainer, FakeButtonDelete } from './styles';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { WindowRounded } from '@mui/icons-material';
 export default function CardTripAdmin(props) {
 const navigate = useNavigate()
 
@@ -25,10 +27,15 @@ const deleteTrip = (id) =>{
     })
 }
 
+const confirmDelete = (ID) =>{
+    if(window.confirm(`Você realmente quer deletar a viagem ${props.trip.name}?`)){
+        deleteTrip(ID)
+    }
+}
     return (
         <CardTripContainer >
             <span onClick={() => goToTripDetails(navigate, props.id)}><p>{props.trip.name}</p></span>
-            <button onClick={() => deleteTrip(props.id)}>X</button>
+            <FakeButtonDelete onClick={() => confirmDelete(props.id)}><DeleteForeverIcon /></FakeButtonDelete>
         </CardTripContainer>
     )
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import background from '../../imgs/background.gif'
+import background from '../../imgs/greenSpace.jpg'
 export const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;

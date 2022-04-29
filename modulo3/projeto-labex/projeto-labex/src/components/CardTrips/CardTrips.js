@@ -12,7 +12,7 @@ export default function CardTrips(props) {
       <p><b>Planeta:</b> {props.trip.planet}</p>
       <p>{props.trip.description}</p>
       <p><b>Data:</b> {dataFormatada}</p>
-      <p><b>Duração:</b> {props.trip.durationInDays}</p>
+      <p><b>Duração:</b> {props.trip.durationInDays} dias</p>
     </CardTripContainer>
   )
 }

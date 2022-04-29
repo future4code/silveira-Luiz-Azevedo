@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { goToHome, goToBack, goToAdmPage } from '../../routes/coordinator';
+import { goToHome, goToBack } from '../../routes/coordinator';
 import { Body, GlobalStyle, MainContainer, HeaderButtonDiv, TripContainer, SendContainer, InputLogin } from './styles';
 import logo from '../../imgs/FOGUETE.png'
 import axios from 'axios';

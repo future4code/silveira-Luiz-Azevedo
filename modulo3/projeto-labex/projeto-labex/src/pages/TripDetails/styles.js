@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import background from '../../imgs/background.gif'
-import logo from '../../imgs/FOGUETE.png'
+import background from '../../imgs/greenSpace.jpg'
 export const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
@@ -12,10 +11,10 @@ export const GlobalStyle = createGlobalStyle`
 export const Body = styled.div`
 display: flex;
 flex-direction: column;
-/* background-image: url(${background});
+background-image: url(${background});
 background-size: cover;
 background-repeat: no-repeat;
-background-position: center; */
+background-position: center;
 header{
   height: 80px;
   display: flex;
@@ -89,22 +88,19 @@ display: flex;
 flex-direction: column;
 align-items: center;
 scroll-behavior: smooth;
-
-h2{
-  color: rgb(60,179,113);
-}
 `
 export const DescricaoContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-background-color: rgb(60,179,113, 0.2);
+background-color: rgb(255,250,250, 0.5);
 min-height: 15rem;
 width: 30rem;
 border-radius: 5px;
 margin-top: 5px;
 margin-bottom: 5px;
+
 p{
   margin:5px;
 }
@@ -122,6 +118,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 height: 100vh;
+margin-top: 38px;
 img{
         object-fit: fill;
         width: 5rem;
@@ -165,4 +162,7 @@ width: 20rem;
 border-radius: 5px;
 margin-top: 5px;
 margin-bottom: 5px;
+`
+export const GreenH2 = styled.h2`
+color:green;
 `

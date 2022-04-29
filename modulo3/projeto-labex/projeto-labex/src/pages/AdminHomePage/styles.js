@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import background from '../../imgs/background.gif'
+import background from '../../imgs/greenSpace.jpg'
 export const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
@@ -11,14 +11,14 @@ export const GlobalStyle = createGlobalStyle`
 export const Body = styled.div`
 display: flex;
 flex-direction: column;
-/* background-image: url(${background});
+background-image: url(${background});
 background-size: cover;
-background-repeat: no-repeat; */
+background-repeat: no-repeat;
 header{
   height: 80px;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(46,139,87, 0.4);
+  /* background-color: rgb(46,139,87, 0.4); */
   button{
       height: 30px;
       background-color: rgb(60,179,113);
@@ -57,7 +57,7 @@ button{
 export const MainContainer = styled.div`
 display: grid;
 grid-template-columns: 0.5fr 1fr 0.5fr;
-background-color: rgb(46,139,87, 0.2);
+/* background-color: rgb(46,139,87, 0.2); */
 `
 export const BackContainer = styled.div`
 grid-column: 1;
@@ -136,4 +136,17 @@ width: 20rem;
 border-radius: 5px;
 margin-top: 5px;
 margin-bottom: 5px;
+`
+export const CardTripContainer = styled.div`
+background-color: rgb(255,250,250, 0.5);
+margin: 5px;
+text-align: center;
+border: 2px solid green;
+border-radius: 15px;
+height: 5rem;
+width: 20rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 `

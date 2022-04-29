@@ -1,14 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import {goToBack, goToHome} from '..//../routes/coordinator'
-import { GlobalStyle, Body, TripContainer, MainContainer, SubsButtonContainer, HeaderButtonDiv, BackContainer, CandidatosPendentesContainer, CandidatosAprovadosContainer, DescricaoContainer } from './styles'
+import {goToBack, goToHome, goToLogin} from '..//../routes/coordinator'
+import { GlobalStyle, Body, TripContainer, MainContainer, SubsButtonContainer, HeaderButtonDiv, BackContainer, CandidatosPendentesContainer, DescricaoContainer, GreenH2 } from './styles'
 import logo from '../../imgs/FOGUETE.png'
 import CardCandidates from '../../components/CardCandidates/CardCandidates';
 import ApprovedCandidates from '../../components/ApprovedCandidates/ApprovedCandidates';
+import { useProtectedPage } from '../../hooks/useProtectedPage';
+import { logout } from '../../hooks/logout';
 
 
 export default function TripDetails() {
+  useProtectedPage()
   const pathParams = useParams();
   const navigate = useNavigate();
   const [tripDetails, setTripDetails] = useState({});
@@ -52,8 +55,8 @@ const url =`https://us-central1-labenu-apis.cloudfunctions.net/labeX/luiz-vinici
   })
   .catch((err) => console.log(err.response))
 }
- console.log(tripDetails)
-
+ 
+const token = localStorage.getItem('token');
 const candidatesList = candidates && candidates.map((candidate) =>{
   return (
     <DescricaoContainer key={candidate.id}>
@@ -87,7 +90,7 @@ const dataFormatada= data.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
         <img onClick={() => goToHome(navigate)}src={logo} alt='logo'/>       
         </HeaderButtonDiv>
         <HeaderButtonDiv>
-        <button>Logout</button>
+          {token ? <button onClick={logout}>Logout</button> : <button onClick={() => goToLogin(navigate)}>Login</button>}
         </HeaderButtonDiv>
       </header>
       <main>
@@ -98,30 +101,30 @@ const dataFormatada= data.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
         <TripContainer>
         
         <CandidatosPendentesContainer>
-          {candidates && candidates.lenght <0 ?(
+          {candidates && candidates.length > 0 ?(
             <>
-            <h2>Candidatos Pendentes</h2>
+            <GreenH2>Candidatos Pendentes</GreenH2>
             {candidatesList}
              </> 
             
           ):
           ( 
             <DescricaoContainer>
-            <h2>Não há candidatos Pendentes</h2>
+            <GreenH2>Não há candidatos Pendentes</GreenH2>
             <img src={logo} alt='logo'/>  
             </DescricaoContainer>
             )}
         </CandidatosPendentesContainer>
         <DescricaoContainer>
-        {candidates && approvedCandidates.lenght <0 ?
+        {candidates && approvedCandidates.length > 0 ?
         (
             <>
-            <h2>Candidatos Aprovados</h2>
+            <GreenH2>Candidatos Aprovados</GreenH2>
           {approvedList}
             </>
           ):(
             <>
-          <h2>Não há candidatos Aprovados</h2>
+          <GreenH2>Não há candidatos Aprovados</GreenH2>
             <img src={logo} alt='logo'/>  
           </>
           )}
@@ -129,7 +132,7 @@ const dataFormatada= data.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
         </TripContainer>
         <SubsButtonContainer>
         <DescricaoContainer>
-        <h2>{tripDetails.name}</h2>
+        <GreenH2>{tripDetails.name}</GreenH2>
         <p><b>Viagem:</b> {tripDetails.name}</p>
           <p>{tripDetails.description}</p>
           <p><b>Planeta:</b> {tripDetails.planet}</p>

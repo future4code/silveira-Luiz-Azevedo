@@ -1,6 +1,6 @@
 import styled from "styled-components"
 export const CardTripContainer = styled.div`
-background-color: rgb(46,139,87, 0.7);
+background-color: rgb(255,250,250, 0.5);
 margin: 5px;
 text-align: center;
 border: 2px solid green;
@@ -10,6 +10,13 @@ width: 20rem;
 display: flex;
 align-items: center;
 justify-content: space-between;
+:hover
+{
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+        transition:all 0.3s ease;
+}
     p{
         margin: 5px;
     }
@@ -27,7 +34,16 @@ justify-content: space-between;
             justify-content: center;
             border-radius: 15px;
             :hover{
-background-color: rgb(46,139,87, 0.9)
+background-color: rgb(255, 250, 250, 0.7);
+color: rgb(60,179,113)
             }
         }
+`
+export const FakeButtonDelete = styled.div`
+cursor: pointer;
+width: 20%;
+height: 20%;
+margin: 0;
+padding: 0;
+
 `

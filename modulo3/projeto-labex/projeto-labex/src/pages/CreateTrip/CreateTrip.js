@@ -6,8 +6,10 @@ import { Body, GlobalStyle, MainContainer, HeaderButtonDiv, TripContainer, gifCo
 import { goToHome, goToBack, goToAdmPage } from '../../routes/coordinator';
 import axios from 'axios'
 import logo from '../../imgs/FOGUETE.png'
+import { useProtectedPage } from '../../hooks/useProtectedPage';
 
 export default function CreateTrip() {
+  useProtectedPage()
   const navigate = useNavigate()
 
 const {form, onChange, clearForm} = useForm({name: "", planet: "", date: "", description: "", durationInDays:""})
@@ -23,7 +25,7 @@ const createTrip = (event) =>{
   }
   axios.post(url, form, headers)
   .then((response) =>{
-    console.log(response)
+    alert("Viagem criada com sucesso!")
     clearForm()
   })
   .then((error) =>{

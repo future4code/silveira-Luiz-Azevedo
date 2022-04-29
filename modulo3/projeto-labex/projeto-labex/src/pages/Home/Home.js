@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import CardTrips from '../../components/CardTrips/CardTrips'
 import { GlobalStyle, Body, TripContainer, MainContainer, SubsButtonContainer, HeaderButtonDiv } from './styled'
 import { useNavigate } from "react-router-dom";
-import { goToLogin, goToSubscription } from '../../routes/coordinator';
+import { goToAdmPage, goToLogin, goToSubscription } from '../../routes/coordinator';
 import logo from '../../imgs/FOGUETE.png'
+import { logout } from '../../hooks/logout';
 
 export default function Home() {
   const navigate = useNavigate()
@@ -27,6 +28,8 @@ useEffect(() =>{
   getAllTrips()
 }, [])
 
+const token = localStorage.getItem('token');
+
   const triplistMap = tripList.map((trip) =>{
     return (
       <TripContainer key={trip.id}>
@@ -43,7 +46,8 @@ useEffect(() =>{
         </HeaderButtonDiv>
         <HeaderButtonDiv>
         <button onClick={()=>goToSubscription(navigate)}>Quero viajar!</button>
-        <button onClick={()=>goToLogin(navigate)}>Login</button>
+        
+        {token ? (<><button onClick={logout}>Logout</button> <button onClick={()=>goToAdmPage(navigate)}>Adm</button></>) : <button onClick={() => goToLogin(navigate)}>Login</button>}
         </HeaderButtonDiv>
       </header>
       <main>
