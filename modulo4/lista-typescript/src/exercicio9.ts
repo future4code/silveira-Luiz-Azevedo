@@ -3,8 +3,7 @@ function qtdAnagramas (word:string):number{
     let fatorial:number = 1
     for (let i:number = tamanho; i > 0; i--){
         fatorial = fatorial * i
-        return fatorial
     }
-    
+    return fatorial
 }
-console.log(qtdAnagramas("word"));
+console.log(qtdAnagramas("tchauzin"));
