@@ -1,6 +1,6 @@
 ###Exercício 1
--- a) Explique como é a resposta que temos quando usamos o raw:
--- Sempre que fizermos SELECT usando RAW ele vai entregar um vetor com dois tipos de informações: a resposta do banco de dados e as informações técnicas; então colocamos o índice [0] como resposta do send.
+> a) Explique como é a resposta que temos quando usamos o raw:
+> Sempre que fizermos SELECT usando RAW ele vai entregar um vetor com dois tipos de informações: a resposta do banco de dados e as informações técnicas; então colocamos o índice [0] como resposta do send.
 app.get('/users/:id', async (req: Request, res: Response) =>{
     try{
     const id = req.params.id;
@@ -13,7 +13,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
     }
     })
     
--- b) Faça uma função que busque um ator pelo nome;
+> b) Faça uma função que busque um ator pelo nome;
     const getActorByName = async (name: string): Promise<any> => {
         const result = await connection.raw(`
           SELECT * FROM Actor WHERE name = '${name}'
@@ -34,7 +34,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
         console.log(await getActorByName("Angela Davies") )
       })()
       
-    -- c) Faça uma função que receba um gender retorne a quantidade de itens na tabela Actor com esse gender. Para atrizes, female e para atores male.
+    > c) Faça uma função que receba um gender retorne a quantidade de itens na tabela Actor com esse gender. Para atrizes, female e para atores male.
     const getCountOfActorsByGender = async (gender: string): Promise<any> => {
         const result = await connection.raw(`
           SELECT COUNT(*) FROM Actor WHERE gender = '${gender}'
@@ -69,7 +69,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
           .into("Actor");
       };
 
-    -- a) Uma função que receba um salário e um id e realiza a atualização do salário do ator em questão
+    > a) Uma função que receba um salário e um id e realiza a atualização do salário do ator em questão
     const updateActorSalary = async (id: string, salary: number): Promise<any> => {
         await connection("Actor")
           .update({
@@ -90,7 +90,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
     .catch(err => {
         console.log(err)
     });
-    -- b) Uma função que receba um id e delete um ator da tabela
+    > b) Uma função que receba um id e delete um ator da tabela
     const deleteActor = async (id: string): Promise<any> => {
         await connection("Actor")
           .delete()
@@ -108,7 +108,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
     .catch(err => {
         console.log(err)
     });
-    -- c) Uma função que receba um gender e devolva a média dos salários de atrizes ou atores desse gender
+    > c) Uma função que receba um gender e devolva a média dos salários de atrizes ou atores desse gender
     const avgSalary = async (gender: string): Promise<any> => {
             const result = await connection("Actor")
               .avg("salary as average") //não sei de onde vieram essas sintaxes
@@ -137,10 +137,10 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
           });
         }
       });
-      -- b)Crie um endpoint agora com as seguintes especificações:
-        -- - Deve ser um GET (`/actor`)
-        -- - Receber o gênero como um *query param* (`/actor?gender=`)
-        -- - Devolver a quantidade de atores/atrizes desse gênero
+      > b)Crie um endpoint agora com as seguintes especificações:
+        > - Deve ser um GET (`/actor`)
+        > - Receber o gênero como um *query param* (`/actor?gender=`)
+        > - Devolver a quantidade de atores/atrizes desse gênero
         app.get("/actor", async (req: Request, res: Response) => {
             try {
               const gender = req.query.gender as string;
@@ -172,7 +172,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
           });
         }
       });
-    -- a) Endpoint para atualizar salário com id
+    > a) Endpoint para atualizar salário com id
     app.put("/actor", async (req: Request, res: Response) => {
         try {
             const id = req.body.id as string
@@ -188,7 +188,7 @@ app.get('/users/:id', async (req: Request, res: Response) =>{
           });
         }
       });
-      -- b) Endpoint para deletar ator da tabela
+      > b) Endpoint para deletar ator da tabela
       app.delete("/actor", async (req: Request, res: Response) => {
         try {
             const id = req.query.id as string
