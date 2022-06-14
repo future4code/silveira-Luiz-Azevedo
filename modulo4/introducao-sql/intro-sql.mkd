@@ -1,0 +1,194 @@
+CREATE TABLE Actor (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR (255) NOT NULL,
+    salary FLOAT NOT NULL,
+    birth_date DATE NOT NULL,
+    gender VARCHAR(6) NOT NULL
+);
+describe Actor;
+
+### Exercício 1
+-- a) 	VARCHAR é usado em id, name e gender pois tipa as variáveis como caracteres e DATE como formato de data
+-- b) SHOW DATABASES exibe todas os banco de dados ativos; SHOW TABLES exibe as tabelas criadas
+SHOW DATABASES;
+SHOW TABLES;
+-- c) describe Actor; exibe as características da tabela Actor, mostrando a variável, seu tipo, se o valor é nulo, qual o tipo de chave, o conteúdo e a informação extra;
+
+### Exercício 2
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "001", 
+  "Tony Ramos",
+  400000,
+  "1948-08-25", 
+  "male"
+);
+###1. A ordem dos valores (`VALUES`) é definida pela lista colocada depois do nome da tabela (`ACTOR`): `(id, name, salary, birth_date)`.
+###2. Os valores `VARCHAR` (strings) devem ser indicados com `"`
+###3. As datas seguem o padrão: `YYYY-MM-DD`
+-- a) adicionar Glória Pires
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "002", 
+  "Glória Pires",
+  1200000,
+  "1963-08-23", 
+  "female"
+);
+-- b) tentar adicionar outro item com o mesmo id: Duplicate entry '002' for key 'PRIMARY'. Aponta que a entrada da chave primária já existe, que é duplicada, e cada item da tabela deve ter uma única chave primária, no caso um único id.
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "002", 
+  "Tony Ramos",
+  400000,
+  "1948-08-25", 
+  "male"
+);
+-- c) identificar e consertar o erro: Error Code: 1136. Column count doesn't match value count at row 1; declaramos que passaríamos apenas id, name, salary como parâmetros, mas incluímos birth_date e gender como resposta, então acusa incompatibilidade;
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "003", 
+  "Fernanda Montenegro",
+  300000,
+  "1929-10-19", 
+  "female"
+);
+-- d) Error Code: 1364. Field 'name' doesn't have a default value; não incluímos a variável name, acusando não ter valor padrão
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "004",
+  "Lima Duarte",
+  400000,
+  "1949-04-18", 
+  "male"
+);
+
+-- e) Error Code: 1292. Incorrect date value: '1950' for column 'birth_date' at row 1; birth_date espera uma data no formato "YYYY-MM-DD" e está sem aspas na resposta, acusando valor incorreto
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "005", 
+  "Juliana Paes",
+  719333.33,
+  "1979-03-26", 
+  "female"
+);
+-- f) add ator e atriz
+INSERT INTO Actor (id,name,salary,birth_date, gender)
+VALUES(
+	"007",
+    "Leonardo Dicaprio",
+    3000000,
+    "1971-04-21",
+    "male"
+);
+INSERT INTO Actor (id,name,salary,birth_date, gender)
+VALUES(
+	"006",
+    "Angela Davies",
+    10000000,
+    "1969-10-23",
+    "female"
+);
+### Exercício 3
+SELECT * FROM Actor;
+SELECT id, salary from Actor;
+SELECT id, name from Actor WHERE gender = "male";
+
+-- a) retornar todas as infos de atrizes:
+SELECT * from Actor WHERE gender = "female";
+
+-- b) salário do ator tony ramos
+SELECT salary from Actor WHERE name = "Tony Ramos";
+
+-- c) explicar resultado de retornar quem tem gender "invalid": a tabela veio vazia, pois não há nenhum ator ou atriz com esse genero
+SELECT * from Actor where gender = "invalid";
+
+-- d) Mostrar os atores com no máximo 500.000 de salário
+SELECT id, name, salary from Actor WHERE salary <= 500000;
+
+-- e) consertar o erro: não há coluna nome e sim name. 
+SELECT id, name from Actor WHERE id = "002";
+
+### Exercício 4
+SELECT * FROM Actor WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000;
+-- Assim como o `LIKE` existem os operadores:
+-- `BETWEEN`: permite verificar se um valor está entre dois: `BETWEEN valor1 AND valor2`.
+-- `NOT`: que indica uma negação de comparação. 
+-- Pode ser usado antes de outros operadores como: `NOT LIKE`, `NOT BETWEEN`
+
+-- a) explicar  WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000: Estamos selecionando a tabela Actor os itens que possuem nomes iniciados com A ou J e que tem salários maiores que 300 mil
+
+-- b) atores que não começam com A e com salário maior q 350mil 
+SELECT * FROM Actor WHERE name NOT LIKE "A%" AND salary > 350000;
+
+-- c) Atores que possuem G ou g em qualquer parte do nome
+SELECT * FROM Actor WHERE name LIKE "G%" OR name LIKE "%G%" OR name LIKE "%G";
+
+-- D) A OU G no nome e salário entre 350mil e 900mil 
+SELECT * FROM Actor WHERE (name LIKE "G%" OR name LIKE "%G%" OR name LIKE "%G" OR name LIKE "A%" OR name LIKE "%A%" OR name LIKE "%A") AND salary BETWEEN 350000 AND 900000;
+
+### Exercício 5 - criar tabela 
+CREATE TABLE Filmes (
+    id VARCHAR(255) PRIMARY KEY,
+    nome VARCHAR (255) NOT NULL,
+    sinopse TEXT NOT NULL,
+    data_de_lancamento DATE NOT NULL,
+    avaliacao INT NOT NULL
+);
+-- a) adicionar 4 filmes
+INSERT INTO Filmes (id,nome,sinopse,data_de_lancamento, avaliacao)
+VALUES(
+	"001",
+    "Se Eu Fosse Você",
+    "Cláudio e Helena são casados há muitos anos e enfrentam a rotina do casamento. Um dia eles são atingidos por um fenômeno inexplicável e trocam de corpos.",
+    "2006-01-06",
+    "7"
+);
+INSERT INTO Filmes (id,nome,sinopse,data_de_lancamento, avaliacao)
+VALUES(
+	"002",
+    "Doce de Mãe",
+    "Dona Picucha, uma animada senhora de 85 anos, sempre causa grandes confusões. A vida dela e dos seus quatro filhos sofre uma reviravolta depois que Zaida, empregada e amiga de Dona Picucha, anuncia que vai se casar e não poderá mais morar com ela.",
+    "2012-12-27",
+    "10"
+);
+INSERT INTO Filmes (id,nome,sinopse,data_de_lancamento, avaliacao)
+VALUES(
+	"003",
+    "Dona Flor e Seus Dois Maridos",
+    "Dona Flor é uma sedutora professora de culinária casada com Vadinho, que só quer saber de farras e jogatina nas boates. A vida de abusos acaba por acarretar sua morte precoce.",
+    "2017-11-02",
+    "8"
+);
+INSERT INTO Filmes (id,nome,sinopse,data_de_lancamento, avaliacao)
+VALUES(
+	"004",
+    "Central do Brasil",
+    "Dora, uma amargurada ex-professora, ganha a vida escrevendo cartas para pessoas analfabetas, que ditam o que querem contar às suas famílias. Ela embolsa o dinheiro sem sequer postar as cartas. Um dia, Josué, o filho de nove anos de idade de uma de suas clientes, acaba sozinho quando a mãe é morta em um acidente de ônibus. Ela reluta em cuidar do menino, mas se junta a ele em uma viagem pelo interior do Nordeste em busca do pai de Josué, que ele nunca conheceu..",
+    "1998-04-03",
+    "9"
+);
+ 
+ -- b) retornar id, nome e avaliação passando uma id
+ SELECT id, nome, avaliacao FROM Filmes WHERE id = 001;
+ 
+ -- c)  buscar filme por nome
+ SELECT * FROM Filmes WHERE nome = "Central do Brasil";
+ 
+ -- d) id titulo e sinopse com avaliação mínima 7
+  SELECT id, nome, sinopse FROM Filmes WHERE avaliacao >= 7;
+  
+  ### Exercício 7
+  -- a) retornar filme com vida no nome
+   SELECT * FROM Filmes WHERE nome LIKE "%vida%";
+   
+   -- b) Pesquisar um termo e retornar o filme que contenha esse termo ou na sinopse ou no nome
+   SELECT * FROM Filmes WHERE nome LIKE "%dona%" OR sinopse LIKE "%dona%";
+   
+   -- c) pesquisar filmes que já foram lançados 
+    SELECT * FROM Filmes WHERE data_de_lancamento < "2022-06-06";
+    
+    -- d) filmes lançados, com o termo de busca e com avaliação maior q 7
+    SELECT * FROM Filmes WHERE data_de_lancamento < "2022-06-06" AND (nome LIKE "%dona%" OR sinopse LIKE "%dona%") AND avaliacao > 7;
