@@ -1,21 +1,27 @@
 import { Request, Response } from "express";
-import connection from "../connection";
-import { user } from "../types";
+import connection from "../data/connection";
+import { createUserData } from "../data/createUserData";
+import { generateToken } from "../services/Authenticator";
+import { IDGenerator } from "../services/IDGenerator";
+import { authentication, user } from "../types";
 
-export default async function createUser(
-   req: Request,
-   res: Response
-): Promise<void> {
+export default async function createUser(req: Request, res: Response): Promise<void> {
    try {
 
-      const { name, nickname, email, password } = req.body
+      const { email, password } = req.body
 
-      if (!name || !nickname || !email || !password) {
+      if (!email || !password) {
          res.statusCode = 422
-         throw new Error("Preencha os campos 'name','nickname', 'password' e 'email'")
+         throw new Error("Preencha os campos 'password' e 'email'")
+      }
+      if(email.indexOf("@") === -1){
+         throw new Error("Email inválido!");
       }
 
-      const [user] = await connection('to_do_list_users')
+      if (password.length < 6) {
+         throw new Error("Senha inválida!");
+       }
+      const [user] = await connection('auth_User')
          .where({ email })
 
       if (user) {
@@ -23,17 +29,20 @@ export default async function createUser(
          throw new Error('Email já cadastrado')
       }
 
-      const id: string = Date.now().toString()
+      const id: string = new IDGenerator().generateID()
 
-      const newUser: user = { id, name, nickname, email, password }
+      const newUser: user = { id, email, password }
 
-      await connection('to_do_list_users')
-         .insert(newUser)
+      // await connection('auth_User')
+      //    .insert(newUser)
+      createUserData(newUser.id, newUser.email, newUser.password)
+      const payload :authentication = {
+         id: newUser.id
+      }
+      const token = generateToken(payload)
+      res.status(201).send(token)
 
-      res.status(201).send({ newUser })
-
-   } catch (error) {
-
+   } catch (error:any) {
       if (res.statusCode === 200) {
          res.status(500).send({ message: "Internal server error" })
       } else {
