@@ -5,11 +5,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 export class authenticator {
 
-   public generateToken(info:authenticationData): string{
+   public generateToken(payload:authenticationData): string{
 
         const token = jwt.sign(
-            {id: info.id,
-            role: info.role},
+            {payload},
             "senhaSuperSegura",
             {expiresIn: "1h"}
         )

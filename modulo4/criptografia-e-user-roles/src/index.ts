@@ -9,11 +9,11 @@ import getUserByToken from './endpoints/getUserByToken';
 
 const senhaCriptografada = new HashManager().createHash("batata")
 
-console.log(senhaCriptografada)
+// console.log(senhaCriptografada)
 
 const compare = new HashManager().compareHash("batata", senhaCriptografada)
 
-console.log(compare)
+// console.log(compare)
 
 app.post('/user/signup', createUser)
 app.post('/user/login', login)

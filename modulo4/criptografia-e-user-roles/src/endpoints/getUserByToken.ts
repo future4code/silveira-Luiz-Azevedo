@@ -6,11 +6,11 @@ import { authenticator } from "../services/authenticator";
 export default async function getUserByToken(req: Request, res: Response): Promise<void> {
     try {
         const token = req.headers.authorization as string;
-        console.log(token);
+        // console.log(token);
 
         const authenticationData = getData(token);
         // const id:any = authenticationData.id
-        console.log(authenticationData);
+        // console.log(authenticationData);
         const user = await getUserByIdData(authenticationData.id)
         
         

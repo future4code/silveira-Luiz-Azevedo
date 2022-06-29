@@ -14,15 +14,15 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "peter@avengers.com" ,
-   "password": "amigodavizinhanca"
+   "email": "hulk@avengers.com" ,
+   "password": "hulkesmaga"
 }
 
 ###
 
 GET http://localhost:3003/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0NjI5NTUsImV4cCI6MTY1NjQ2NjU1NX0.mZUuznbBFGFrxkyfPICi8gZtw3xaygdLdiUWL2fjJhg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiNGUxOTJiODgtODg3OC00NGQ1LWFjOWQtODQ1MjlkMTMzYzYxIiwicm9sZSI6Im5vcm1hbCJ9LCJpYXQiOjE2NTY1MjgxMjMsImV4cCI6MTY1NjUzMTcyM30.agJGk_gOjgAfjl1q8NfS565ebFUdL-V7fegH-IjxAa8
 
 ###
 

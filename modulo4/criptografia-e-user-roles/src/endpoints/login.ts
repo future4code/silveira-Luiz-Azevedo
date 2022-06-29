@@ -22,7 +22,7 @@ export default async function login(req: Request, res: Response): Promise<void> 
         }
         
         const user = await getUserByEmailData(email);
-        // console.log(user[0].password);
+        // console.log(user[0]);
         
         const hash = new HashManager().compareHash(password, user[0].password);
 
@@ -35,9 +35,10 @@ export default async function login(req: Request, res: Response): Promise<void> 
         const newAuthenticator = new authenticator()
 
         const payload: authenticationData = {
-            id: user.id,
-            role: user.role
+            id: user[0].id,
+            role: user[0].role
         }
+        // console.log(payload);
         
         const token = newAuthenticator.generateToken(payload)
        
