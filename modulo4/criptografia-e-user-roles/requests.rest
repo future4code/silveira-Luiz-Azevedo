@@ -1,0 +1,37 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "email": "hulk@avengers.com" ,
+   "password": "hulkesmaga"
+}
+
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "peter@avengers.com" ,
+   "password": "amigodavizinhanca"
+}
+
+###
+
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0NjIwNjMsImV4cCI6MTY1NjQ2NTY2M30.4hdNWr7mnbZWsHQ2DJy2PLLkV7KpISTax4b5KtErKR8
+
+###
+
+# @token = {{login.response.body.token}}
+
+# PUT http://localhost:3003/user/edit/
+# Content-Type: application/json
+# Authorization: {{token}}
+
+# {
+#    "name": "Peter Parker" 
+# }
