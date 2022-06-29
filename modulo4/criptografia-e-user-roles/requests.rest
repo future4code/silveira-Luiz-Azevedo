@@ -22,7 +22,7 @@ Content-Type: application/json
 
 GET http://localhost:3003/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0NjIwNjMsImV4cCI6MTY1NjQ2NTY2M30.4hdNWr7mnbZWsHQ2DJy2PLLkV7KpISTax4b5KtErKR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTY0NjI5NTUsImV4cCI6MTY1NjQ2NjU1NX0.mZUuznbBFGFrxkyfPICi8gZtw3xaygdLdiUWL2fjJhg
 
 ###
 
