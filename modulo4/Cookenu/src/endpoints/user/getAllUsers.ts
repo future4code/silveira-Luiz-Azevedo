@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
-import { Authenticator } from "../services/Authenticator";
+import { UserDatabase } from "../../data/UserDatabase";
+import { Authenticator } from "../../services/Authenticator";
 
-export async function getProfile(req: Request, res: Response){
+export async function getAllUsers(req: Request, res: Response){
     try {
         const token = req.headers.authorization as string;
 
@@ -13,12 +13,11 @@ export async function getProfile(req: Request, res: Response){
         const authentication = new Authenticator()
         const getTokenData = authentication.getTokenData(token)
 
-        
-        const user = await new UserDatabase().findUserByID(getTokenData.id)
-        if(!user){
-            res.status(404).send("Usuário não encontrado :( ")
+        if(getTokenData.role !== "ADMIN"){
+            res.status(401).send("Apenas administradores podem acessar essa funcionalidade :( ")
         }
-        res.status(200).send(user)
+        const users = await new UserDatabase().getAllUsers()
+        res.status(200).send(users)
     } catch (error:any) {
         res.status(400).send(error.message)
     }

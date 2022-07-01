@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
-import { User, USER_ROLES } from "../entities/User";
-import { Authenticator } from "../services/Authenticator";
-import { HashManager } from "../services/HashManager";
+import { UserDatabase } from "../../data/UserDatabase";
+import { User, USER_ROLES } from "../../entities/User";
+import { Authenticator } from "../../services/Authenticator";
+import { HashManager } from "../../services/HashManager";
 
 
-import { IDGenerator } from "../services/IDGenerator";
+import { IDGenerator } from "../../services/IDGenerator";
 
 export async function login(req: Request, res: Response){
     try {

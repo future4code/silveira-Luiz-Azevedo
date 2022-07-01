@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
-import { Authenticator } from "../services/Authenticator";
+import { FollowersDatabase } from "../../data/FollowersDatabase";
+import { UserDatabase } from "../../data/UserDatabase";
+import { Authenticator } from "../../services/Authenticator";
 
 export async function following(req: Request, res: Response){
     try {
@@ -25,7 +26,7 @@ export async function following(req: Request, res: Response){
             res.status(404).send("Não econtramos usuário com a ID passada. Não se sinta solitário, tente novamente :/ ")
         }
 
-        await new UserDatabase().following(getTokenData.id, idToFollow)
+        await new FollowersDatabase().following(getTokenData.id, idToFollow)
         res.status(200).send(`${user.getName()} acaba de seguir ${userToFollow.getName()}.`)
     } catch (error:any) {
         res.status(400).send(error.message)

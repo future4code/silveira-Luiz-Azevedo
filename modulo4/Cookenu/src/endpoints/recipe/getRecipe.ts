@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RecipeDatabase } from "../data/RecipeDatabase";
+import { RecipeDatabase } from "../../data/RecipeDatabase";
 
 export async function getRecipe(req: Request, res: Response) {
     try {

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { RecipeDatabase } from "../data/RecipeDatabase";
-import { UserDatabase } from "../data/UserDatabase";
-import { Recipes } from "../entities/Recipes";
-import { Authenticator } from "../services/Authenticator";
-import { IDGenerator } from "../services/IDGenerator";
+import { RecipeDatabase } from "../../data/RecipeDatabase";
+import { UserDatabase } from "../../data/UserDatabase";
+import { Recipes } from "../../entities/Recipes";
+import { Authenticator } from "../../services/Authenticator";
+import { IDGenerator } from "../../services/IDGenerator";
 
 export async function createRecipes(req: Request, res: Response){
     try {

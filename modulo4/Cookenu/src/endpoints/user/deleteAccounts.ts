@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { FollowersDatabase } from "../data/FollowersDatabase";
-import { RecipeDatabase } from "../data/RecipeDatabase";
-import { UserDatabase } from "../data/UserDatabase";
-import { Authenticator } from "../services/Authenticator";
+import { FollowersDatabase } from "../../data/FollowersDatabase";
+import { RecipeDatabase } from "../../data/RecipeDatabase";
+import { UserDatabase } from "../../data/UserDatabase";
+import { Authenticator } from "../../services/Authenticator";
 
 
 export default async function deleteAccount(req: Request, res: Response): Promise<void> {
@@ -18,14 +18,14 @@ export default async function deleteAccount(req: Request, res: Response): Promis
         }
 
         if (!deleteUserId) {
-            throw new Error("Verifique a ID passada, por favor!")
+            res.status(422).send("Verifique a ID passada, por favor!")
         }
 
-        // para deletar um usuário, preciso primeiramente deletar todas as relações que esse usuário tem com outras tabelas.
-        // nesse caso, deletar as receitas que ele criou, a relação dele com outros usuários e, por fim, deletar o usuário.
+        // para deletar um usuário, preciso deletar todas as relações desse usuário.
+        //ou seja, preciso deletar as receitas que ele criou, os follows, por fim, deletar o usuário.
         await new RecipeDatabase().deleteRecipe(deleteUserId)
         // deletando as receitas que o usuário criou.
-        await new FollowersDatabase().deleteFollowing(deleteUserId)
+        await new FollowersDatabase().deleteFollowRelationship(deleteUserId)
         // deletando a relação dele com outros usuários(seguir/deixar de seguir)
         await new UserDatabase().deleteUser(deleteUserId)
         // deletando, por fim, o usuário.

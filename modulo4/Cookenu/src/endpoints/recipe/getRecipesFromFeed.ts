@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
-import { Authenticator } from "../services/Authenticator";
+import { FollowersDatabase } from "../../data/FollowersDatabase";
+import { RecipeDatabase } from "../../data/RecipeDatabase";
+import { UserDatabase } from "../../data/UserDatabase";
+import { Authenticator } from "../../services/Authenticator";
 
 export async function getRecipesFromFeed(req: Request, res: Response){
     try {
@@ -20,7 +22,7 @@ export async function getRecipesFromFeed(req: Request, res: Response){
         if(!user){
             res.status(422).send("Usuário não encontrado, verifique seu token! :( ")
         }
-        const recipesArray = await new UserDatabase().getFeed(getTokenData.id)
+        const recipesArray = await new FollowersDatabase().getFeed(getTokenData.id)
         if(recipesArray.length < 1){
             res.status(404).send("Seu feed ainda está vazio... siga seus amigos e encontre suas receitas favoritas!! :D")
         }

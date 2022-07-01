@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
-import { Authenticator } from "../services/Authenticator";
+import { FollowersDatabase } from "../../data/FollowersDatabase";
+import { UserDatabase } from "../../data/UserDatabase";
+import { Authenticator } from "../../services/Authenticator";
 
 export async function unfollowing(req: Request, res: Response){
     try {
@@ -25,7 +26,7 @@ export async function unfollowing(req: Request, res: Response){
             res.status(404).send("Não econtramos usuário com a ID passada. Insira a ID do seguidor indesejável novamente :/ ")
         }
 
-        await new UserDatabase().unfollowing(getTokenData.id, idToUnfollow)
+        await new FollowersDatabase().unfollowing(getTokenData.id, idToUnfollow)
         res.status(200).send(`${user.getName()} parou de seguir ${userToUnfollow.getName()}.`)
     } catch (error:any) {
         res.status(400).send(error.message)

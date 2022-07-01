@@ -44,12 +44,13 @@ export class FollowersDatabase extends BaseDatabase{
     }
 
 
-    public async deleteFollowing(id: string): Promise<any> {
-        await BaseDatabase.connection()
+    public async deleteFollowRelationship(id: string): Promise<any> {
+      const result =  await BaseDatabase.connection()
             .delete()
             .from("Followers_lbn")
             .where('id_followed', id)
             .orWhere('id_follower', id)
+            return result
     }
 
     }
