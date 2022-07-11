@@ -1,19 +1,36 @@
-import * as jwt from 'jsonwebtoken'
-import { USER_ROLES } from '../entities/User'
+import { config } from "dotenv"
+import { JwtPayload, sign, verify } from "jsonwebtoken"
+import { AuthenticationData } from "../model/User"
 
-export interface AuthenticationData{
-    id:string,
-    role:USER_ROLES
+config()
+
+export class Authenticator {
+
+    generateToken = (
+        payload: AuthenticationData
+    ) => {
+        return sign(
+            payload,
+            process.env.JWT_KEY!,
+            {
+                expiresIn: process.env.JWT_EXPIRES_IN
+            }
+        )
+    }
+
+    getTokenData = (token: string): AuthenticationData | null => {
+        try {
+            
+            const tokenData = verify(
+                token,
+                process.env.JWT_KEY!
+            ) as JwtPayload
+
+            return {
+                id: tokenData.id
+            }
+        } catch (error) {
+            return null
+        }
+    }
 }
-
-export class Authenticator{
-    public generateToken(payload: AuthenticationData):string{
-        const token = jwt.sign(payload, process.env.JWT_KEY, {expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN});
-        return token
-    }
-
-    public getTokenData(token:string): AuthenticationData{
-        const data = jwt.verify(token, process.env.JWT_KEY)
-        return data as AuthenticationData
-    }
-} 
