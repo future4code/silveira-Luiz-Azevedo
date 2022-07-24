@@ -7,7 +7,8 @@ export class UserController {
     ) { }
     async deleteUsers(req: Request, res: Response){
         try {
-           await this.userBusiness.deleteUsers()
+           await new UserBusiness().deleteUsers()
+        //    await this.userBusiness.deleteUsers()
             res.status(200).send("Successfully deleted users!")
         } catch (error:any) {
             const { statusCode, message } = error
@@ -26,8 +27,8 @@ export class UserController {
                 participation: Number(req.body.participation)
             }
             // console.log(input);
-            
-            await this.userBusiness.createUser(input)
+            await new UserBusiness().createUser(input)
+            // await this.userBusiness.createUser(input)
             
             
 
@@ -52,16 +53,17 @@ export class UserController {
         const dataLast_name = { last_name: last_name }
         try {
             if (id && !first_name && !last_name) {
-                const result = await this.userBusiness.getUser(dataId)
+                const result = await new UserBusiness().getUser(dataId)
+                // const result = await this.userBusiness.getUser(dataId)
                 res.status(200).send(result)
             } else if (!id && first_name && !last_name) {
-                const result = await this.userBusiness.getUser(dataFirst_name)
+                const result = await new UserBusiness().getUser(dataFirst_name)
                 res.status(200).send(result)
             } else if(!id && !first_name && last_name){
-                const result = await this.userBusiness.getUser(dataLast_name)
+                const result = await new UserBusiness().getUser(dataLast_name)
                 res.status(200).send(result)
             } else {
-                const results = this.userBusiness.getAllUsers();
+                const results = new UserBusiness().getAllUsers();
                 res.status(200).send(results);
             }
 
@@ -80,7 +82,7 @@ export class UserController {
             const id = Number(req.params.id)
 
 
-            const result = await this.userBusiness.getFirstName(id)
+            const result = await new UserBusiness().getFirstName(id)
             
             res.status(200).send({result})
 
@@ -98,7 +100,7 @@ export class UserController {
         try {
             const id = Number(req.params.id)
 
-            const result = await this.userBusiness.getLastName(id)
+            const result = await new UserBusiness().getLastName(id)
             res.status(200).send({result})
         } catch (error:any) {
             const { statusCode, message } = error

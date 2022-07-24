@@ -38,6 +38,12 @@ export interface UserInputDTO {
     last_name: string,
     participation: number
 }
+export interface UserOutputDTO {
+    id:number,
+    first_name: string,
+    last_name: string,
+    participation: number
+}
 
 
 export interface UserLastNameOutputDTO {

@@ -1,5 +1,5 @@
 import { CustomError } from '../error/CustomError';
-import { User, UserFirstNameOutputDTO, UserLastNameOutputDTO } from '../model/User';
+import { User, UserFirstNameOutputDTO, UserInputDTO, UserLastNameOutputDTO, UserOutputDTO } from '../model/User';
 import { BaseData } from "./BaseData"
 const nomeTabela = "case1"
 
@@ -16,9 +16,9 @@ export class UserData extends BaseData {
         return result[0]
     }
 
-    public getUserById = async (id: string): Promise<User | undefined> => {
+    public getUserById = async (id: number): Promise<UserInputDTO | undefined> => {
         try {
-            const [user]: User[] = await UserData
+            const [user]: UserInputDTO[] = await UserData
                 .connection(nomeTabela)
                 .select(`*`)
                 .where({ id })
@@ -42,7 +42,7 @@ export class UserData extends BaseData {
         }
     }
 
-    public async getUserByFirstName(first_name: string): Promise<User> {
+    public async getUserByFirstName(first_name: string): Promise<UserOutputDTO> {
         try {
             const result = await UserData
                 .connection(nomeTabela)
@@ -54,7 +54,7 @@ export class UserData extends BaseData {
         }
     }
 
-    public async getUserByLastName(last_name: string): Promise<User> {
+    public async getUserByLastName(last_name: string): Promise<UserOutputDTO> {
         try {
             const result = await UserData
                 .connection(nomeTabela)
@@ -66,7 +66,7 @@ export class UserData extends BaseData {
         }
     }
 
-    public async getUsers(): Promise<User[]> {
+    public async getUsers(): Promise<UserOutputDTO[]> {
         try {
             const results = await UserData
                 .connection(nomeTabela)

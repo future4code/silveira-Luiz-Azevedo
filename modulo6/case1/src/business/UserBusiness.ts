@@ -5,9 +5,9 @@ import { UserInputDTO } from "../model/User";
 
 export class UserBusiness {
 
-    constructor(private UserData: UserData){
+    // constructor(private UserData: UserData){
 
-    }
+    // }
 
     async deleteUsers(){
         try {
@@ -64,35 +64,36 @@ export class UserBusiness {
 
             if (!first_name && !id && !last_name) { throw new CustomError(422, `User's firs name, last name or id required`) }
             if (id && !first_name && !last_name) {
-                const result = await this.UserData.getUserById(id)
+                const userDatabase = new UserData()
+                const result = await userDatabase.getUserById(id)
+                // const result = await this.UserData.getUserById(id)
                 if(!result){
                     throw new CustomError(404, "User not found.")
                 }
                 return result
             } else if (first_name && !id && !last_name) {
-                const result = await this.UserData.getUserByFirstName(first_name)
+                const userDatabase = new UserData()
+                const result = await userDatabase.getUserByFirstName(first_name)
+                // const result = await this.UserData.getUserByFirstName(first_name)
                 if(!result){
                     throw new CustomError(404, "User not found.")
                 }
-                const output = {
-                    id: result.getId(),
-                    first_name: result.getFirstName(),
-                    last_name: result.getLastName(),
-                    participation: result.getParticipation()
-                }
-                return output
+               
+                return result
             } else if (last_name && !id && !first_name) {
-                const result = await this.UserData.getUserByLastName(last_name)
+                const userDatabase = new UserData()
+                const result = await userDatabase.getUserByLastName(last_name)
+                // const result = await this.UserData.getUserByLastName(last_name)
                 if(!result){
                     throw new CustomError(404, "User not found.")
                 }
-                const output = {
-                    id: result.getId(),
-                    first_name: result.getFirstName(),
-                    last_name: result.getLastName(),
-                    participation: result.getParticipation()
-                }
-                return output
+                // const output = {
+                //     id: result.getId(),
+                //     first_name: result.getFirstName(),
+                //     last_name: result.getLastName(),
+                //     participation: result.getParticipation()
+                // }
+                return result
             }else {
                 throw new CustomError(422, `User's ID, first name or last name is required`)
             }
@@ -103,8 +104,8 @@ export class UserBusiness {
 
     getAllUsers = async () => {
         try {
-           
-            const results = await this.UserData.getUsers();
+           const results = await new UserData().getUsers();
+            // const results = await this.UserData.getUsers();
             if(!results){
                 throw new CustomError(400, "Something goes wrong.")
             }
@@ -119,8 +120,8 @@ export class UserBusiness {
             if(!id){
                 throw new CustomError(422, `User's ID is required.`)
             }
-            
-            const result = await this.UserData.getFirstName(id)
+            const result = await new UserData().getFirstName(id)
+            // const result = await this.UserData.getFirstName(id)
             // console.log(result.first_name);
             
             if(!result){
@@ -137,7 +138,9 @@ export class UserBusiness {
                 throw new CustomError(422, `User's ID is required.`)
             }
 
-            const result = await this.UserData.getLastName(id)
+            const result = await new UserData().getLastName(id)
+
+            // const result = await this.UserData.getLastName(id)
             if(!result){
                 throw new CustomError(404, "User not found.")
             }
@@ -148,4 +151,4 @@ export class UserBusiness {
     }
 }
 
-export default new UserBusiness(new UserData)
+// export default new UserBusiness(new UserData)
