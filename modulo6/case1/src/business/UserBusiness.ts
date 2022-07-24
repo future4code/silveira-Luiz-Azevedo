@@ -124,12 +124,13 @@ export class UserBusiness {
             // const result = await this.UserData.getFirstName(id)
             // console.log(result.first_name);
             
-            if(!result){
+            if(result == undefined){
+                
                 throw new CustomError(404, "User not found.")
             }
             return result.first_name
         } catch (error:any) {
-            
+            throw new CustomError(error.statusCode, error.message);   
         }
     }
     getLastName = async (id:number) =>{
@@ -146,7 +147,7 @@ export class UserBusiness {
             }
             return result.last_name
         } catch (error:any) {
-            
+            throw new CustomError(error.statusCode, error.message);
         }
     }
 }
