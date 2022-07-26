@@ -106,10 +106,22 @@ export class UserBusiness {
         try {
            const results = await new UserData().getUsers();
             // const results = await this.UserData.getUsers();
+            // console.log(results);
+            
             if(!results){
                 throw new CustomError(400, "Something goes wrong.")
             }
-            return results;
+            if(results.length == 0 ){
+                throw new CustomError(404, "No user found.")
+            }
+            return results.map((user)=>{
+                return {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    participation: user.participation
+                }
+            });
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
         }

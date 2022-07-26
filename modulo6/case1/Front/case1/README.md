@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Projeto: Case1 - CuboNetworking
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Projeto desenvolvido em julho de 2022, por Luiz Vinícius de Azevedo.
 
-## Available Scripts
+### Documentação da API:
 
-In the project directory, you can run:
+https://documenter.getpostman.com/view/20356729/UzXKXKBV
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Sobre o projeto: 
+Desenvolvido como teste para um case de processo seletivo legado, onde há cadastro de usuários com primeiro nome, último nome e fatia de participação. A aplicação renderiza as informações na tela em forma de tabela com os usuários e em forma de gráfico. A aplicação só permite cadastros até que soma de participações chegue a 100%. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<br>
 
-### `npm test`
+### CADASTRO
+O usuário precisa preencher os campos: first_name, last_name e participation para realizar o cadastro. É necessário o preenchimento de todos os campos para a finalização da função. Aqui, o id é gerado automático diretamente no Banco de Dados através do auto_increment.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+### BUSCAR USUÁRIO
+Endpoint para buscar todas as informações do usuário. Para isso, é necessário passar id, first name ou last name via query. Caso não seja passado nenhum parâmetro como query o endpoint buscará todos os usuários.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### BUSCAR FIRST NAME
+Endpoint para buscar apenas o primeiro nome do usuário. Demanda a ID do usuário via params.
 
-### `npm run eject`
+<br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### BUSCAR LAST NAME
+Endpoint para buscar apenas o último nome do usuário. Demanda a ID do usuário via params.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### DELETAR USUÁRIOS
+Endpoint para deletar todos os usuários do banco de dados.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Tecnologias utilizadas:
+- Node.js
+- Typescript
+- MYSQL
+- Programação Orientada à Objetos
+- Postman
+- Git
+<br>
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Linguagens e libs utilizadas:
+- Typescript
+- mysql
+- dotenv
+- express
+- knex
 
-### Analyzing the Bundle Size
+<br>
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Conhecimentos adquiridos durante o desenvolvimento do projeto:
+- Integração com banco de dados externo.
+- Requisições API Rest.
 
-### Making a Progressive Web App
+<br>
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Como rodar a aplicação:
+- Clone o projeto no terminal utilizando o git clone;
+- Na pasta do projeto, instale as dependências com o comando npm install;
+- Crie um arquivo .env com as configurações do seu banco de dados(preferencialmente MySQL, que foi o banco de dados utilizado no projeto);
+- No arquivo .env, deverá ficar dessa forma:
 
-### Advanced Configuration
+```
+DB_HOST = seu_endereço_host
+DB_USER = seu_usuário
+DB_PASSWORD = sua_senha
+DB_SCHEMA = seu_banco_de_dados
+JWT_KEY = chave_jwt
+ACCESS_TOKEN_EXPIRES_IN = "tempo_de_expiração_do_token"
+BCRYPT_COST = custo_da_aplicação
+```
+- Por fim, execute a aplicação rodando o comando npm start, ou npm run start para deixar o projeto rodando o tempo todo.
+OBSERVAÇÃO: você pode testar os endpoints em um arquivo request.rest ou através de um cliente HTTP (ex: postman), utilizando o endereço http://rede-social-cookenu.herokuapp.com/ como URL padrão para as requisições. Para obter informações de cada endpoint, consulte a documentação.
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## EXTRA
 
-### Deployment
+Tabelas criadas no MySQL Workbench para o desenvolvimento do projeto:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Tabela de usuário
 
-### `npm run build` fails to minify
+```
+CREATE TABLE case1 (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  first_name varchar(255) NOT NULL,
+  last_name varchar(255) NOT NULL,
+  participation float not null 
+)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```

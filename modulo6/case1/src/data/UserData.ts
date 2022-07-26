@@ -71,6 +71,7 @@ export class UserData extends BaseData {
             const results = await UserData
                 .connection(nomeTabela)
                 .select("*")
+                .as("users")
             return results;
         } catch (error: any) {
             throw new CustomError(400, error.sqlMessage);

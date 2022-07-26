@@ -63,7 +63,9 @@ export class UserController {
                 const result = await new UserBusiness().getUser(dataLast_name)
                 res.status(200).send(result)
             } else {
-                const results = new UserBusiness().getAllUsers();
+                const results = await new UserBusiness().getAllUsers();
+                // console.log(results);
+                
                 res.status(200).send(results);
             }
 
