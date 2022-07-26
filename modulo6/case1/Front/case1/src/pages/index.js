@@ -15,7 +15,7 @@ function IndexPage() {
 
   console.log(users);
   const usersMap = users && users.map((user)=>{
-    return [`${user.first_name}${user.last_name}`, user.participation]
+    return [`${user.first_name} ${user.last_name}`, user.participation]
   })
 
   const [options] = useState({

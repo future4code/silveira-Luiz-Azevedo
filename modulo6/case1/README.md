@@ -10,7 +10,7 @@ https://documenter.getpostman.com/view/20356729/UzXKXKBV
 
 ### Link da aplicação
 
-https://case1-cubonetworking.surge.sh/
+https://cubonetworking-case1.surge.sh/
 
 <br>
 
