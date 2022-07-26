@@ -1,29 +1,46 @@
-# Projeto: Case 1 - CuboNetworking
+# Projeto: Case1 - CuboNetworking
 
 ### Projeto desenvolvido em julho de 2022, por Luiz Vinícius de Azevedo.
 
 ### Documentação da API:
+
 https://documenter.getpostman.com/view/20356729/UzXKXKBV
+
+<br>
+
+### Link da aplicação
+
+https://case1-cubonetworking.surge.sh/
+
 <br>
 
 ## Sobre o projeto: 
-Desenvolvido e inspirado em um case de processo seletivo legado, onde cadastramos usuário com primeiro nome, último nome e participação e renderizamos essas informações tanto numa tabela quanto num gráfico pizza
+Desenvolvido como teste para um case de processo seletivo legado, onde há cadastro de usuários com primeiro nome, último nome e fatia de participação. A aplicação renderiza as informações na tela em forma de tabela com os usuários e em forma de gráfico. A aplicação só permite cadastros até que soma de participações chegue a 100%. 
+
+<br>
 
 ### CADASTRO
 O usuário precisa preencher os campos: first_name, last_name e participation para realizar o cadastro. É necessário o preenchimento de todos os campos para a finalização da função. Aqui, o id é gerado automático diretamente no Banco de Dados através do auto_increment.
 
-### BUSCAR USUÁRIO
-Endpoint para buscar todas as informações do usuário. Para isso, é necessário passar id, first name ou last name via query. Caso não seja passado nenhum parâmetro como query o endpoint buscará todos os usuários.
 <br>
 
-### BUSCAR FIRST NAME
-Endpoint para buscar apenas o primeiro nome do usuário. Demanda a ID do usuário via params. 
+### BUSCAR USUÁRIO
+Endpoint para buscar todas as informações do usuário. Para isso, é necessário passar id, first name ou last name via query. Caso não seja passado nenhum parâmetro como query o endpoint buscará todos os usuários.
+
 <br>
+
+
+### BUSCAR FIRST NAME
+Endpoint para buscar apenas o primeiro nome do usuário. Demanda a ID do usuário via params.
+
+<br>
+
 
 ### BUSCAR LAST NAME
 Endpoint para buscar apenas o último nome do usuário. Demanda a ID do usuário via params.
 
 <br>
+
 
 ### DELETAR USUÁRIOS
 Endpoint para deletar todos os usuários do banco de dados.
@@ -35,6 +52,7 @@ Endpoint para deletar todos os usuários do banco de dados.
 - Node.js
 - Typescript
 - MYSQL
+- Programação Orientada à Objetos
 - Postman
 - Git
 <br>
@@ -87,6 +105,7 @@ CREATE TABLE case1 (
   id INT PRIMARY KEY AUTO_INCREMENT,
   first_name varchar(255) NOT NULL,
   last_name varchar(255) NOT NULL,
-  participation float NOT NULL
-);
+  participation float not null 
+)
+
 ```

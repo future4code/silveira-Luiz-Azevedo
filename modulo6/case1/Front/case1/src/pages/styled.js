@@ -34,9 +34,23 @@ header{
 }
 main{
   flex-grow: 1;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  table{
+    background-color: whitesmoke;
+    border: 1px black solid;
+  }
 }
 `
-
+export const TableDiv = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+table{
+  text-align: center;
+}
+`
 export const HeaderButtonDiv = styled.div`
 display: flex;
 flex-direction: row;
@@ -61,4 +75,19 @@ export const InputLogin = styled.input`
 export const SendContainer = styled.div`
   display: flex;
   justify-content: center;
+`
+export const DeleteButton = styled.button`
+cursor: pointer;
+height: 30px;
+      background-color: rgb(25,25,230, 0.2);
+      border-radius: 5px;
+      padding: 1rem;
+      border-style: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      :hover{
+        background-color: rgb(60,179,113, 0.2);
+        color: white;
+      }
 `
