@@ -1,0 +1,34 @@
+POST  http://localhost:3003/api/pizzas
+Content-Type: application/json
+
+{
+    "name": "Mussarela",
+    "price": 40,
+    "ingredients": "Massa, molho de tomate e queijo mussarela."
+}
+
+###
+
+GET http://localhost:3003/api/pizzas
+
+###
+
+POST  http://localhost:3003/api/orders
+Content-Type: application/json
+
+{
+    "pizza": "Mussarela",
+    "quantity": 4
+}
+
+###
+
+GET http://localhost:3003/api/orders
+
+###
+
+###
+
+GET http://localhost:3003/api/orders/2
+
+###
