@@ -48,8 +48,7 @@ export class OrderData extends BaseData {
             const results = await OrderData
                 .connection(ordersDetails)
                 .select("*")
-                .innerJoin("orders_list_case2", "orders_list_case2.id", "orders_details_case2.id")
-                .where("orders_list_case2", `${id}`)
+                .where({id})
             return results[0];
         } catch (error: any) {
             throw new CustomError(400, error.sqlMessage);

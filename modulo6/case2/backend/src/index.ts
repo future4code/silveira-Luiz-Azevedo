@@ -9,7 +9,8 @@ const pizzaBusiness = new PizzaBusiness()
 const pizzaController = new PizzaController(pizzaBusiness)
 app.get("/api/pizzas", pizzaController.getPizzas)
 app.post("/api/pizzas", pizzaController.createPizza)
-// app.delete("/api/pizza/:id", pizzaController.getPizzas)
+app.delete("/api/pizzas/:id", pizzaController.deletePizza)
+
 
 //ORDERS
 const orderBusiness = new OrderBusiness()

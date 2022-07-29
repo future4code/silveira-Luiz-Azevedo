@@ -52,22 +52,22 @@ export class PizzaController {
 
     
 
-    // async deletePizza(req: Request, res: Response){
-    //     const id = Number(req.params.id)
+    async deletePizza(req: Request, res: Response){
+        const id = Number(req.params.id)
         
-    //     try {
-    //        await new PizzaBusiness().deletePizza(id)
-    //     //    await this.userBusiness.deleteUsers()
-    //         res.status(200).send("Successfully deleted pizza!")
-    //     } catch (error:any) {
-    //         const { statusCode, message } = error
-    //         if (statusCode === 200) {
-    //             res.status(500).send(`Unexpected error!`)
-    //         } else {
-    //             res.status(statusCode || 400).send({ message });
-    //         }
-    //     }
-    //     }
+        try {
+           await new PizzaBusiness().deletePizza(id)
+        //    await this.userBusiness.deleteUsers()
+            res.status(200).send("Successfully deleted pizza!")
+        } catch (error:any) {
+            const { statusCode, message } = error
+            if (statusCode === 200) {
+                res.status(500).send(`Unexpected error!`)
+            } else {
+                res.status(statusCode || 400).send({ message });
+            }
+        }
+        }
     
 
   

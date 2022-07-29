@@ -17,13 +17,20 @@ export class OrderBusiness {
 
             if (!pizza  || !quantity) { throw new CustomError(422, `Please, review the parameters sent! `) }
             
+            const findPizzaInDatabase = await new PizzaData().getPizzaByName(pizza)
+            if (!findPizzaInDatabase) { throw new CustomError(404, `We don't have this flavor of pizza! :/ `) }
 
             const items = pizza
-            await new OrderData().createOrder(items) //dependencia
+            await new OrderData().createOrder(items); //dependencia
 
-            await new OrderData().createOrderDetails(pizza, quantity)//dependência
+            await new OrderData().createOrderDetails(pizza, quantity);//dependência
             
+            const results = await new OrderData().getOrders()
+            const length = results.length
+            const lastOne = results[length-1]
 
+            return lastOne.id
+            
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
         }

@@ -17,8 +17,8 @@ POST  http://localhost:3003/api/orders
 Content-Type: application/json
 
 {
-    "pizza": "Mussarela",
-    "quantity": 4
+    "pizza": "Gorgonzola",
+    "quantity": 1
 }
 
 ###
@@ -29,6 +29,6 @@ GET http://localhost:3003/api/orders
 
 ###
 
-GET http://localhost:3003/api/orders/2
+GET http://localhost:3003/api/orders/1
 
 ###

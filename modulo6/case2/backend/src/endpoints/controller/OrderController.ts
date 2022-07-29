@@ -16,11 +16,11 @@ export class OrderController {
                 pizza: req.body.pizza,
                 quantity: Number(req.body.quantity)
             }
-            await new OrderBusiness().createOrder(input)
+            const id = await new OrderBusiness().createOrder(input)
 
 
 
-            res.status(200).send({ message: `Order placed successfully` })
+            res.status(200).send({ message: `Order placed successfully. This is the order's ID: ${id}` })
         } catch (error: any) {
             const { statusCode, message } = error
             if (statusCode === 200) {

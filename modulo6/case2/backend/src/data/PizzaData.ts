@@ -56,7 +56,7 @@ export class PizzaData extends BaseData {
         try {
             await PizzaData
                 .connection(nomeTabela)
-                .delete()
+                .delete("*")
                 .where({id})
         } catch (error: any) {
             throw new CustomError(400, error.sqlMessage);

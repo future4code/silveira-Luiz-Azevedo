@@ -48,12 +48,13 @@ export class PizzaBusiness {
         }
     }
 
-    // async deletePizza(id:number){
-    //     try {
-    //         new PizzaData().deletePizza(id)
-    //     } catch (error:any) {
-    //         throw new CustomError(error.statusCode, error.message);
-    //     }
-    // }
+    async deletePizza(id:number){
+        try {
+            if(!id){throw new CustomError(422, "Please, review the ID sent!")}
+            new PizzaData().deletePizza(id)
+        } catch (error:any) {
+            throw new CustomError(error.statusCode, error.message);
+        }
+    }
 
 }
