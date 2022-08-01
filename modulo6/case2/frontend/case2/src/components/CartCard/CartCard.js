@@ -9,10 +9,10 @@ import axios from 'axios';
 import { BASE_URL } from '../../constants/urls';
 
 
-export default function CartCard({cart}) {
- 
+
+export default function CartCard({cart, setOrderMessage, setCart, setLastOrderInfo, setShowMessage}) {
+  setLastOrderInfo(cart[0])
 const confirmOrder = async (cart) =>{
-  // console.log(cart);
 const headers = {
   headers: {
     'Content-Type': 'application/json'
@@ -24,14 +24,17 @@ const body ={
 }
 await axios.post(`${BASE_URL}/api/orders`, body, headers)
   .then((res)=>{
-    // alert(res.data)
-    console.log(res);
+    alert("Pedido realizado com sucesso.")
+    setOrderMessage(res.data.message)
+    setShowMessage(true)
+    setCart([])
   })
   .catch((err)=>{
     console.log(err);
   })
 }
   return (
+    <div>
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -50,6 +53,7 @@ await axios.post(`${BASE_URL}/api/orders`, body, headers)
       <CardActions>
         <Button size="small" onClick={()=>{confirmOrder(cart[0])}}>Confirmar pedido</Button>
       </CardActions>
-    </Card>
+      </Card>
+      </div>
   );
 }

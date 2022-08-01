@@ -12,13 +12,15 @@ import { useGlobal } from '../../context/global/GlobalStateContext';
 
 export default function PizzaCard({pizza, addToCart, removeFromCart}) {
   const [openModal, setOpenModal] = useState(false);
-  const {states} = useGlobal()
+  const {states, setters} = useGlobal()
 
+  const {setShowInfoInCart} = setters
   const {cart} = states
-console.log(cart);
+// console.log(cart);
   const choiceQuantity = (quantity) =>{
     addToCart( pizza, quantity)
     setOpenModal(false)
+    setShowInfoInCart(false)
   }
 
   const pizzaInCart = cart.find((pizzaInCart) => pizzaInCart.id === pizza.id)

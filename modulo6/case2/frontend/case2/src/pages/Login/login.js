@@ -17,7 +17,6 @@ export default function Login() {
     <Body>
       <GlobalStyle />
     <ScreenContainer>
-      {/* <LogoImg src={logo} /> */}
       <InputsContainer>
      <LoginForm />
       <SingupButton>

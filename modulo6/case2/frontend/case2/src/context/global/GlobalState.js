@@ -2,10 +2,15 @@ import { useState } from "react";
 import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = ({children}) => {
-  const [cartTotalValue, setCartTotalValue] = useState([0]);
-  const [cartWithOrders, setCartWithOrders] = useState([]);
+  const [orderMessage, setOrderMessage] = useState("");
+  const [orderInfo, setOrderInfo] = useState({});
+  const [lastOrderInfo, setLastOrderInfo] = useState({});
   const [cart, setCart] = useState([]);
   const [cartOrder,setCartOrder] = useState({pizza:"", quantity:0});
+  const [showInfoInCart, setShowInfoInCart] = useState(false);
+ const [showMessage, setShowMessage] = useState(false);
+
+
 
   
   const addToCart = (pizza, quantity) =>{
@@ -17,8 +22,8 @@ const GlobalState = ({children}) => {
     newCart.splice(index, 1)
     setCart(newCart)
   }
-  const states = { cart, cartOrder, cartWithOrders, cartTotalValue};
-  const setters = { setCart, setCartOrder, setCartWithOrders, setCartTotalValue};
+  const states = { cart, cartOrder, orderInfo, orderMessage, lastOrderInfo, showInfoInCart, showMessage};
+  const setters = { setCart, setCartOrder, setOrderInfo, setOrderMessage, setLastOrderInfo, setShowInfoInCart,setShowMessage};
   const requests = {addToCart, removeFromCart};
 
   return (
