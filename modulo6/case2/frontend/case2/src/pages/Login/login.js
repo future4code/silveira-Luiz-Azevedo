@@ -7,13 +7,13 @@ import LoginForm from './loginForm';
 import { Body, SingupButton } from './styled';
 import { GlobalStyle } from '../Index/styled';
 import Footer from '../../components/Footer/Footer';
-// import useUnProtectedPage from '../../hooks/useUnProtectedPage';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import useUnprotectedPage from '../../hooks/useUnprotectedPage';
 
 export default function Login() {
-  // useUnProtectedPage()
+  useUnprotectedPage()
   const navigate = useNavigate();
 
   return (
@@ -33,7 +33,6 @@ export default function Login() {
       <Button 
       onClick={() => goToSignup(navigate)}
       variant='text'
-      color='primary'
       margin={'normal'}
       fullWidth>
         Ainda sem conta? Cadastre-se

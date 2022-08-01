@@ -15,7 +15,7 @@ https://documenter.getpostman.com/view/20356729/Uzds49FF
 <br>
 
 ## Sobre o projeto: 
-Desenvolvido como teste para um case de processo seletivo legado, onde simula-se uma aplicação para pedir pizzas delivery.
+Desenvolvido como teste para um case de processo seletivo legado, onde simula-se uma aplicação para pedir pizzas delivery. O usuáro não precisa de cadastro e login para fazer pedidos e buscar pedidos. Apenas administradores precisam se cadastrar e/ou logar para acessar funcionalidades de buscar todos os pedidos, criar e deletar pizzas.
 
 <br>
 
@@ -51,10 +51,22 @@ Endpoint para realizar um pedido. Demanda pizza e quantity via body.É necessár
 
 <br>
 
+### Signup
+Endpoint para cadastro de usuários. Demanda username, email e password via body. Importante para acessar funcionalidades específicas da aplicação.
+
+<br>
+
+### Login
+Endpoint para realizar um pedido. Demanda pizza e quantity via body.É necessário o preenchimento de todos os campos para a finalização da função.
+
+<br>
+
 
 ## Tecnologias utilizadas:
 - Node.js
+- React js
 - Typescript
+- Javascript
 - MYSQL
 - Programação Orientada à Objetos
 - Postman
@@ -68,6 +80,10 @@ Endpoint para realizar um pedido. Demanda pizza e quantity via body.É necessár
 - dotenv
 - express
 - knex
+- uuid
+- bcryptjs
+- mui
+- axios
 
 <br>
 <br>

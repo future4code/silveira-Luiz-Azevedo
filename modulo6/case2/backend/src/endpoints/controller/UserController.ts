@@ -12,20 +12,22 @@ export class UserController {
         res: Response) => {
             try {
 
-                const {name, email, password} = req.body
-                if (!name || !email || !password) {
-                    throw new CustomError(422, "Os campos 'name', 'email' e 'password' são obrigatórios.")
-                }
+                const {username, email, password} = req.body
 
-                const token = await new UserBusiness().signUp(name, email, password)
-
+                const user = {username, email, password}
+                // console.log(user);
+                
+                const token = await new UserBusiness().signup(user)
+                // console.log(token);
+                
                 res.status(201).send({message: "User created sucessifully!", token})
 
             } catch (error: any) {
-                if (res.statusCode === 200) {
-                    res.status(500).send({ message: "Internal server error" })
+                const { statusCode, message } = error
+                if (statusCode === 200) {
+                    res.status(500).send(`Unexpected error!`)
                 } else {
-                    res.send({ message: error.sqlMessage || error.message })
+                    res.status(statusCode || 400).send({ message });
                 }
             }
     }
@@ -36,25 +38,23 @@ export class UserController {
             try {
 
                 const {email, password} = req.body
-                if (!email || !password) {
-                    res.statusCode = 422
-                    throw new Error("Os campos 'email' e 'password' são obrigatórios.")
-                }
+               
 
                 const token = await new UserBusiness().login(email, password)
                 if (!token) {
                     res.statusCode = 400
-                    throw new Error("Entrada de password incorreta!")
+                    throw new Error("Password incorrect!")
                 }
 
 
-                res.status(200).send({message: "Usuário logado com sucesso!", token})
+                res.status(200).send({message: "User logged in successfully!", token})
 
             } catch (error:any) {
-                if (res.statusCode === 200) {
-                    res.status(500).send({ message: "Internal server error" })
+                const { statusCode, message } = error
+                if (statusCode === 200) {
+                    res.status(500).send(`Unexpected error!`)
                 } else {
-                    res.send({ message: error.sqlMessage || error.message })
+                    res.status(statusCode || 400).send({ message });
                 }
             }
         }

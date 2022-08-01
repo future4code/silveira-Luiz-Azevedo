@@ -2,17 +2,16 @@ import React from 'react'
 import useForm from '../../hooks/useForm'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
-import { Body, ScreenContainer, SingupButton } from './styled'
-// import logo from '../../assets/logo.png'
-// import useUnProtectedPage from '../../hooks/useUnProtectedPage';
+import { Body, ScreenContainer, SingupButton } from './styled';
 import { signup } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import { GlobalStyle } from '../Index/styled';
 import Footer from '../../components/Footer/Footer';
+import useUnprotectedPage from '../../hooks/useUnprotectedPage';
 
 export default function SignUp() {
     const navigate = useNavigate()
-    // useUnProtectedPage()
+    useUnprotectedPage()
   const {form, onChange, clear} = useForm({ username:"", email: "", password: "" })//puxando a estrutura do useState e do OnChange
     const onSubmitForm = (event) => {
         event.preventDefault()//importante para não mostrar a senha na url após o submit

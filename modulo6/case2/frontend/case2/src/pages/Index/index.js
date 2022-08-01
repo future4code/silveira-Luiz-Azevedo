@@ -8,6 +8,7 @@ import { goToLogin } from '../../routes/coordinator';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useGlobal } from '../../context/global/GlobalStateContext';
+import AdminPizzaCard from '../../components/AdminPizzaCard/AdminPizzaCard';
 
 
 function IndexPage() {

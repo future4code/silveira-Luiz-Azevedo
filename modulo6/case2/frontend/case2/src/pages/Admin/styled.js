@@ -21,7 +21,7 @@ header{
   background-color: rgb(25,25,230, 0.8);
   button{
       height: 30px;
-      background-color: rebeccapurple;
+      background-color: rgb(25,25,230, 0.2);
       border-radius: 5px;
       padding: 1rem;
       border-style: hidden;
@@ -38,8 +38,9 @@ header{
 main{
   flex-grow: 1;
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   table{
     background-color: whitesmoke;
     border: 1px black solid;
@@ -107,3 +108,14 @@ export const ContainerQuantidade = styled.div`
   position: relative;
   right: -32px;
 `;
+export const SingupButton = styled.div`
+margin: 5px;
+margin-left: 0;
+width: 100%;
+` 
+export const DivButtonLogout = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+`

@@ -2,18 +2,20 @@ import { red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 import { primaryColor, secondaryColor } from './colors';
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: `${primaryColor}`,
+    const theme = createTheme({
+        status: {
+          danger: '#e53e3e',
         },
-        secondary: {
-            main: `${secondaryColor}`,
+        palette: {
+          primary: {
+            main: primaryColor,
+            darker: '#053e85',
+          },
+          neutral: {
+            main: secondaryColor,
+            contrastText: '#fff',
+          },
         },
-        error: {
-            main: red.A400,
-        },
-    },
-});
+      });
 
 export default theme; 

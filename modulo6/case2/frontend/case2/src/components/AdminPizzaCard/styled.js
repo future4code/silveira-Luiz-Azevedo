@@ -21,7 +21,7 @@ header{
   background-color: rgb(25,25,230, 0.8);
   button{
       height: 30px;
-      background-color: rebeccapurple;
+      background-color: rgb(25,25,230, 0.2);
       border-radius: 5px;
       padding: 1rem;
       border-style: hidden;
@@ -39,7 +39,7 @@ main{
   flex-grow: 1;
   display:flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   table{
     background-color: whitesmoke;
     border: 1px black solid;
@@ -74,7 +74,7 @@ export const InputLogin = styled.input`
     display: flex;
     justify-content: center;
 `
-export const SendContainer = styled.div`
+export const CardContainer = styled.div`
   display: flex;
   justify-content: center;
 `

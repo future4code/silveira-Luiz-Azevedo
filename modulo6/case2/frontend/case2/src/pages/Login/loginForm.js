@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import { SingupButton } from './styled'
 import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
-import { goToSignup } from '../../routes/coordinator';
 import { login } from '../../services/user';
 
 export default function LoginForm() {
@@ -40,10 +39,9 @@ export default function LoginForm() {
                     type={'password'} />
                 <SingupButton>
                     <Button
-                        onClick={() => goToSignup(navigate)}
                         type={'submit'}
                         variant='contained'
-                        color='primary'
+                        color='secondary'
                         margin={'normal'}
                         fullWidth>
                         Login

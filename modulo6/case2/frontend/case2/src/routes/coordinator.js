@@ -10,3 +10,9 @@ export const goToSignup = (navigate) =>{
 export const goToCart = (navigate) =>{
     navigate('/cart')
 } 
+export const goToAdmin = (navigate) =>{
+    navigate('/admin')
+}
+export const goToAddPizza = (navigate) =>{
+    navigate('/pizza')
+} 
