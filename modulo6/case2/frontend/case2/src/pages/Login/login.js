@@ -8,6 +8,9 @@ import { Body, SingupButton } from './styled';
 import { GlobalStyle } from '../Index/styled';
 import Footer from '../../components/Footer/Footer';
 // import useUnProtectedPage from '../../hooks/useUnProtectedPage';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 export default function Login() {
   // useUnProtectedPage()
@@ -18,6 +21,13 @@ export default function Login() {
       <GlobalStyle />
     <ScreenContainer>
       <InputsContainer>
+      <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Área apenas para administradores
+        </Typography>
+      </CardContent>
+      </Card>
      <LoginForm />
       <SingupButton>
       <Button 
