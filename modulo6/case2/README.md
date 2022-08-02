@@ -10,12 +10,12 @@ https://documenter.getpostman.com/view/20356729/Uzds49FF
 
 ### Link da aplicação
 
-
+case2-ambulnzllc.surge.sh
 
 <br>
 
 ## Sobre o projeto: 
-Desenvolvido como teste para um case de processo seletivo legado, onde simula-se uma aplicação para pedir pizzas delivery. O usuáro não precisa de cadastro e login para fazer pedidos e buscar pedidos. Apenas administradores precisam se cadastrar e/ou logar para acessar funcionalidades de buscar todos os pedidos, criar e deletar pizzas.
+Desenvolvido como teste para um case de processo seletivo legado, onde simula-se uma aplicação mobile first para pedir pizzas delivery. O usuáro não precisa de cadastro e login para fazer pedidos e buscar pedidos. Apenas administradores precisam se cadastrar e/ou logar para acessar funcionalidades de buscar todos os pedidos, criar e deletar pizzas.
 
 <br>
 
@@ -91,6 +91,8 @@ Endpoint para realizar um pedido. Demanda pizza e quantity via body.É necessár
 ### Conhecimentos adquiridos durante o desenvolvimento do projeto:
 - Integração com banco de dados externo.
 - Requisições API Rest.
+- Autenticação de usuários.
+- Criptografia básica de senhas.
 
 <br>
 <br>
@@ -118,7 +120,7 @@ OBSERVAÇÃO: você pode testar os endpoints em um arquivo request.rest ou atrav
 
 Tabelas criadas no MySQL Workbench para o desenvolvimento do projeto:
 
-- Tabela de usuário
+- Tabela de pizzas
 ```
 CREATE TABLE case2_pizzas(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -127,17 +129,28 @@ price FLOAT NOT NULL,
 ingredients TEXT NOT NULL
 );
 ```
+- Tabela de pedidos
 ```
 CREATE TABLE orders_list_case2(
 id INT PRIMARY KEY AUTO_INCREMENT,
 items VARCHAR(255) NOT NULL
 );
 ```
+- Tabela de detalhes do pedido
 ```
 CREATE TABLE orders_details_case2(
 id INT PRIMARY KEY AUTO_INCREMENT,
 pizza VARCHAR(255) NOT NULL,
 quantity INT NOT NULL,
 FOREIGN KEY (id) REFERENCES orders_list_case2(id)
+);
+```
+- Tabela de usuários
+```
+CREATE TABLE case2_Users(
+id VARCHAR(255) PRIMARY KEY NOT NULL,
+username VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL
 );
 ```

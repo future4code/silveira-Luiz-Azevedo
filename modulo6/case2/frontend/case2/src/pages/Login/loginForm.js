@@ -41,7 +41,7 @@ export default function LoginForm() {
                     <Button
                         type={'submit'}
                         variant='contained'
-                        color='secondary'
+                        color='primary'
                         margin={'normal'}
                         fullWidth>
                         Login

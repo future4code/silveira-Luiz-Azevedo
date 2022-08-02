@@ -34,6 +34,7 @@ export default function Login() {
       onClick={() => goToSignup(navigate)}
       variant='text'
       margin={'normal'}
+      color='primary'
       fullWidth>
         Ainda sem conta? Cadastre-se
       </Button>
