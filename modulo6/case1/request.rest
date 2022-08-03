@@ -1,0 +1,25 @@
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "first_name": "ney",
+    "last_name": "mar",
+    "participation": 2
+}
+
+###
+
+DELETE  http://localhost:3003/user
+Content-Type: application/json
+
+###
+GET http://localhost:3003/user
+Content-Type: application/json
+
+###
+GET http://localhost:3003/FirstName/2
+Content-Type: application/json
+
+###
+GET http://localhost:3003/lastName/1
+Content-Type: application/json
