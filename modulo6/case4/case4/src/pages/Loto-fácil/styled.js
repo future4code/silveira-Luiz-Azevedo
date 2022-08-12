@@ -5,34 +5,69 @@ export const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
 }
 `
-
-export const EstructureDiv = styled.div`
+export const Body = styled.div`
 display: flex;
-flex-direction: row;
-height: 39.06rem;
-background: #6BEFA3;
+flex-direction: column;
+header{
+  height: 80px;
+  display: flex;
+  justify-content: center;
+}
+  
 `
-
-export const LoteryDiv = styled.div`
-   grid-column: 1;
-    display:flex;
-    flex-direction: column;
-`
-
-
-export const NumberDiv = styled.div`
-border-radius: 260px 0 0 260px;
-background-color: #d3d3d3;
-width: 100rem;
+export const TableDiv = styled.div`
 display: flex;
-flex-direction: row;
 justify-content: center;
 align-items: center;
-margin-left: 20rem;
+table{
+  text-align: center;
+}
 `
+export const HeaderButtonDiv = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+form{
+    display: flex;
+    flex-direction: row;
+    margin-left: 7rem;
+}
+
+button{
+    margin-right: 1rem;
+}
+`
+export const InputLogin = styled.input`
+    margin: 5px;
+    min-width: 20.8rem;
+    min-height: 1.2rem;
+    display: flex;
+    justify-content: center;
+`
+export const SendContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+export const DeleteButton = styled.button`
+cursor: pointer;
+height: 30px;
+      background-color: rgb(25,25,230, 0.2);
+      border-radius: 5px;
+      padding: 1rem;
+      border-style: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      :hover{
+        background-color: rgb(60,179,113, 0.2);
+        color: white;
+      }
+`
+
+
 export const ContainerMS = styled.div`
     position: absolute;
     left: 0%;
@@ -41,6 +76,7 @@ export const ContainerMS = styled.div`
     bottom: 0%;
     background: #6BEFA3;
 `
+
 export const MainContainerU = styled.div`
     background: #C0C0C0 ;
     display: flex;
@@ -49,10 +85,18 @@ export const MainContainerU = styled.div`
     align-content: center;
     justify-content: center;
     align-items: center;
-    
 `
 
 
+export const Button = styled.button`
+/*     
+    position: absolute; */
+    left: 6%;
+    right: 80.51%;
+    top: 8.52%;
+    /* bottom: 87.3%; */
+    background: #FFFFFF;
+`
 export const NameLoteria = styled.p`
     position: absolute;
     left: 11.11%;
@@ -95,8 +139,6 @@ export const Data = styled.div`
     line-height: 24px;
     color: #FFFFFF;
 `
-
-
 
 export const Ball = styled.div`
     /* position: absolute; */

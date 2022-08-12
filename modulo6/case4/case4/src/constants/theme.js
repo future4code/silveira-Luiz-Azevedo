@@ -1,18 +1,29 @@
-import { red } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material";
+
+
 
 const theme = createTheme({
     palette: {
-        primary: {
-            main: '#556cd6',
+        primary: { // works
+          main: '#165788',
+          contrastText: '#fff',
         },
-        secondary: {
-            main: '#19857b',
+        secondary: { // works
+          main: '#69BE28',
+          contrastText: '#fff',
         },
-        error: {
-            main: red.A400,
+        companyBlue: {
+            backgroundColor: '#65CFE9',
+            color: '#fff',
         },
-    },
+        companyRed: { 
+            backgroundColor: '#E44D69',
+            color: '#000',
+        },
+        megaSena: {
+            backgroundColor: '#6BEFA3',
+            color: '#fff',
+        }
+    }
 });
-
 export default theme;

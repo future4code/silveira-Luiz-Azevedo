@@ -1,48 +1,55 @@
-// import React, { useState } from 'react';
-// import useForm from '../../hooks/useForm';
+import React, { useState } from 'react';
+import { useGlobal } from '../../context/GlobalStateContext';
+import useForm from '../../hooks/useForm';
+import { goToPage } from '../../routes/coordinator';
+import { useNavigate } from 'react-router-dom';
+import { Button, Concurso, ContainerMS, Data, MainContainerU, NameLoteria } from './styled';
 
 
 
-// function MegeSena() {
-//   const { form, onChange, cleanField } = useForm({ pagina: '' })
-//     const { states, setters, requests } = useGlobal();
-//     const navigate = useNavigate();
+function Lotomania() {
+    const { form, onChange, clearForm } = useForm({ pagina: '' })
+    const { states, setters, requests } = useGlobal();
+    const navigate = useNavigate()
 
-//     const doCheckIn = e => {
-//         e.preventDefault()
-//         goToPage(navigate, states.pagina)
-//         console.log('bernardo');
-//         console.log(states);
-//     }
+    const {pagina, loteria } = states;
+    const { setPagina } = setters;
 
-//     return (
-//         <MainContainerU>
-//             <ContainerMS>
-//                 <form onSubmit={doCheckIn}>
-//                     <select name="pagina" value={states.pagina} onChange={(e) => { setters.setPagina(e.target.value) }}>
+    const doCheckIn = e => {
+        e.preventDefault()
+        goToPage(navigate, pagina)
+        console.log(states);
+    }
 
-//                         <option value="/diadesorte" >Dia de Sorte</option>
-//                         <option value="/lotofacil" >Loto Facil</option>
-//                         <option value="/lotomania" >Loto Mania</option>
-//                         <option value="/" >Mega-Sena</option>
-//                         <option value="/quina" >Quina</option>
-//                         <option value="/timemania" >Time Mania</option>
+    return (
+        <MainContainerU>
 
-//                     </select>
-//                     <Button>IR PARA A PAGINA</Button>
-//                 </form>
-//                 {
-//                     states && states.loteria && states.loteria[0] &&
-//                     <NameLoteria>{states.loteria[0].nome}</NameLoteria>
-//                 }
+            <ContainerMS>
+                <form onSubmit={doCheckIn}>
+                    <select name="pagina" value={pagina} onChange={(e) => { setPagina(e.target.value) }}>
 
-//                 <Concurso>CONCURSO</Concurso>
-//                 <Data>02/08/2022</Data>
+                        <option value="/diadesorte" >Dia de Sorte</option>
+                        <option value="/lotofacil" >Loto Facil</option>
+                        <option value="/lotomania" >Loto Mania</option>
+                        <option value="/" >Mega-Sena</option>
+                        <option value="/quina" >Quina</option>
+                        <option value="/timemania" >Time Mania</option>
 
-//             </ContainerMS>
-//             {states.concursosById && states && states.loteriaConcurso[0] && <ShowBall LoteriaConcurso={0} />}
-//         </MainContainerU >
-//     )
-// } 
+                    </select>
+                    <Button>IR PARA A PAGINA</Button>
+                </form>
+                {
+                    states && loteria && loteria[0] &&
+                    <NameLoteria>{loteria[0].nome}</NameLoteria>
+                }
 
-// export default MegeSena
+                <Concurso>CONCURSO</Concurso>
+                <Data>02/08/2022</Data>
+
+            </ContainerMS>
+            {/* {states.concursosById && states && loteriaConcurso[0] && <ShowBall LoteriaConcurso={0} />} */}
+        </MainContainerU >
+    )
+} 
+
+export default Lotomania

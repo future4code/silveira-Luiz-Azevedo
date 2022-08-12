@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ShowBall from '../../components/showBall';
 import { useGlobal } from '../../context/GlobalStateContext';
 import useForm from '../../hooks/useForm';
 import { goToPage } from '../../routes/coordinator';
-import { Button, Concurso, ContainerMS, Data, MainContainerU, NameLoteria } from './styled';
+import {Body, Concurso, LoteryDiv, Data, EstructureDiv, GlobalStyle, NameLoteria, NumberDiv } from './styled';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Button, ThemeProvider } from '@mui/material';
+import theme from '../../constants/theme';
+
 
 
 
 function MegeSena() {
-  const { form, onChange, cleanField } = useForm({ pagina: '' })
+    const { form, onChange, clearForm } = useForm({ pagina: '' })
     const { states, setters, requests } = useGlobal();
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
-    const {pagina, loteria } = states;
+    const { pagina, loteria, concursosById, loteriaConcurso } = states;
     const { setPagina } = setters;
 
     const doCheckIn = e => {
@@ -22,21 +30,30 @@ function MegeSena() {
     }
 
     return (
-        <MainContainerU>
-            <ContainerMS>
-                <form onSubmit={doCheckIn}>
-                    <select name="pagina" value={pagina} onChange={(e) => { setPagina(e.target.value) }}>
-
-                        <option value="/diadesorte" >Dia de Sorte</option>
-                        <option value="/lotofacil" >Loto Facil</option>
-                        <option value="/lotomania" >Loto Mania</option>
-                        <option value="/" >Mega-Sena</option>
-                        <option value="/quina" >Quina</option>
-                        <option value="/timemania" >Time Mania</option>
-
-                    </select>
-                    <Button>IR PARA A PAGINA</Button>
-                </form>
+        <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <EstructureDiv>
+        {/* <MainContainerU> */}
+            <LoteryDiv>
+                <FormControl onSubmit={doCheckIn}>
+                    {/* <InputLabel id="demo-simple-select-label">{loteria[0].nome}</InputLabel> */}
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={pagina}
+                        label="Concurso"
+                        onChange={(e) => { setPagina(e.target.value) }}
+                    >
+                        <MenuItem value="/diadesorte">Dia de Sorte</MenuItem>
+                        <MenuItem value="/lotofacil" >Loto Facil</MenuItem>
+                        <MenuItem value="/lotomania" >Loto Mania</MenuItem>
+                        <MenuItem value="/" >Mega-Sena</MenuItem>
+                        <MenuItem value="/quina" >Quina</MenuItem>
+                        <MenuItem value="/timemania" >Time Mania</MenuItem>
+                    </Select>
+                    <Button style={theme.palette.megaSena}>Ir para concurso</Button>
+                </FormControl>
+               
                 {
                     states && loteria && loteria[0] &&
                     <NameLoteria>{loteria[0].nome}</NameLoteria>
@@ -45,10 +62,16 @@ function MegeSena() {
                 <Concurso>CONCURSO</Concurso>
                 <Data>02/08/2022</Data>
 
-            </ContainerMS>
-            {/* {states.concursosById && states && loteriaConcurso[0] && <ShowBall LoteriaConcurso={0} />} */}
-        </MainContainerU >
+            </LoteryDiv>
+            
+        {/* </MainContainerU > */}
+        <NumberDiv>
+
+            {concursosById && states && loteriaConcurso[0] && <ShowBall LoteriaConcurso={0} />}
+            </NumberDiv>
+        </EstructureDiv>    
+        </ThemeProvider>
     )
-} 
+}
 
 export default MegeSena
